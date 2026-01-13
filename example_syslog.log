@@ -1,0 +1,14 @@
+Dec 25 10:15:30 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
+Dec 25 10:15:31 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
+Dec 25 10:15:32 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
+Dec 25 10:15:33 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
+Dec 25 10:15:34 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
+Dec 25 10:15:35 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
+Dec 25 10:15:36 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
+Dec 25 10:16:00 server1 apache2[5678]: access denied for /admin/config from 192.168.1.102
+Dec 25 10:16:01 server1 apache2[5678]: access denied for /wp-admin from 192.168.1.102
+Dec 25 10:16:02 server1 sshd[1234]: Accepted publickey for user from 192.168.1.101
+Dec 25 10:16:03 server1 apache2[5678]: authentication failure for user test from 192.168.1.103
+Dec 25 10:16:04 server1 apache2[5678]: authentication failure for user test from 192.168.1.103
+Dec 25 10:16:05 server1 apache2[5678]: authentication failure for user test from 192.168.1.103
+

@@ -1,0 +1,14 @@
+# Log Analysis Tool for Security Events
+# Python 3.x required
+
+# This project uses only Python standard library modules:
+# - re (regex parsing)
+# - json (JSON report generation)
+# - csv (CSV report generation)
+# - argparse (CLI interface)
+# - datetime (timestamp handling)
+# - collections (defaultdict for statistics)
+
+# No external dependencies required.
+# Python 3.6+ recommended for f-string support and type hints.
+
