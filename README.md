@@ -120,12 +120,31 @@ The tool can parse Apache Common Log Format entries:
 
 ### Syslog Format
 
-The tool can parse Syslog format entries:
+The tool can parse Syslog format entries, including **Ubuntu system logs**:
 
 ```
 Dec 25 10:15:30 server1 sshd[1234]: Failed password for user from 192.168.1.100
 Dec 25 10:15:31 server1 sshd[1234]: Failed password for user from 192.168.1.100
 Dec 25 10:15:32 server1 sshd[1234]: Accepted publickey for user from 192.168.1.101
+```
+
+**Ubuntu Log Support:**
+The tool supports Ubuntu system logs including:
+- `/var/log/syslog` - General system messages
+- `/var/log/auth.log` - Authentication events (SSH, sudo, etc.)
+- `/var/log/kern.log` - Kernel messages
+
+**Example Ubuntu auth log file (`example_ubuntu_auth.log`):**
+```
+Dec 25 10:15:30 ubuntu-server sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Dec 25 10:15:31 ubuntu-server sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Dec 25 10:15:32 ubuntu-server sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Dec 25 10:15:33 ubuntu-server sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Dec 25 10:15:34 ubuntu-server sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Dec 25 10:15:35 ubuntu-server sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Dec 25 10:15:36 ubuntu-server sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Dec 25 10:16:00 ubuntu-server sshd[1234]: Accepted publickey for user ubuntu from 192.168.1.101 port 54322 ssh2
+Dec 25 10:16:01 ubuntu-server sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=1000)
 ```
 
 **Example log file (`example_syslog.log`):**
@@ -139,6 +158,16 @@ Dec 25 10:15:35 server1 sshd[1234]: Failed password for invalid user admin from 
 Dec 25 10:15:36 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
 Dec 25 10:16:00 server1 apache2[5678]: access denied for /admin/config from 192.168.1.102
 Dec 25 10:16:01 server1 apache2[5678]: access denied for /wp-admin from 192.168.1.102
+```
+
+**Analyzing Ubuntu logs:**
+```bash
+# Analyze Ubuntu auth.log (requires sudo for read access)
+sudo python main.py /var/log/auth.log --format syslog
+
+# Or copy the log file first
+sudo cp /var/log/auth.log ./auth.log
+python main.py auth.log --format syslog
 ```
 
 ## Security Event Detection
