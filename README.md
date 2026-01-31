@@ -41,8 +41,8 @@ positional arguments:
   log_file              Path to the log file to analyze
 
 optional arguments:
-  --format {auto,syslog,apache}
-                        Log format type (default: auto-detect)
+  --format {auto,syslog,systemd,apache}
+                        Log format type (default: auto-detect). Supports syslog, systemd (journal), and apache formats
   --output OUTPUT       Output file path for report (JSON or CSV)
   --output-format {json,csv,text}
                         Output format: json, csv, or text (default: text)
@@ -64,17 +64,17 @@ optional arguments:
    python main.py logs/syslog.txt --format syslog --output report.json --output-format json
    ```
 
-3. **Analyze Apache logs and save CSV report:**
+4. **Analyze Apache logs and save CSV report:**
    ```bash
    python main.py logs/apache.log --format apache --output report.csv --output-format csv
    ```
 
-4. **Custom thresholds:**
+5. **Custom thresholds:**
    ```bash
    python main.py logs/access.log --failed-threshold 10 --traffic-threshold 200
    ```
 
-5. **Monitor additional suspicious paths:**
+6. **Monitor additional suspicious paths:**
    ```bash
    python main.py logs/access.log --suspicious-paths /api/admin /private /secret
    ```
@@ -162,12 +162,52 @@ Dec 25 10:16:01 server1 apache2[5678]: access denied for /wp-admin from 192.168.
 
 **Analyzing Ubuntu logs:**
 ```bash
-# Analyze Ubuntu auth.log (requires sudo for read access)
+# Analyze Ubuntu auth.log (traditional syslog format - requires sudo for read access)
 sudo python main.py /var/log/auth.log --format syslog
 
 # Or copy the log file first
 sudo cp /var/log/auth.log ./auth.log
 python main.py auth.log --format syslog
+
+# Analyze systemd journal format (modern Ubuntu systems)
+# Export journal to text format first:
+journalctl --no-pager > journal.log
+python main.py journal.log --format systemd
+
+# Or use auto-detect (recommended)
+python main.py journal.log
+```
+
+### Systemd Journal Format (Modern Ubuntu)
+
+The tool supports systemd journal format with ISO 8601 timestamps, commonly used in modern Ubuntu systems:
+
+```
+2026-01-29T18:23:10.277402+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root (uid=0) by rahmo(uid=1000)
+2026-01-29T18:23:15.123456+02:00 rahmo-VMware-Virtual-Platform sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+```
+
+**Example log file (`example_systemd.log`):**
+```
+2026-01-29T18:23:10.277402+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root (uid=0) by rahmo(uid=1000)
+2026-01-29T18:23:15.123456+02:00 rahmo-VMware-Virtual-Platform sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+2026-01-29T18:23:16.234567+02:00 rahmo-VMware-Virtual-Platform sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+2026-01-29T18:23:17.345678+02:00 rahmo-VMware-Virtual-Platform sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+2026-01-29T18:23:18.456789+02:00 rahmo-VMware-Virtual-Platform sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+2026-01-29T18:23:19.567890+02:00 rahmo-VMware-Virtual-Platform sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+2026-01-29T18:23:20.678901+02:00 rahmo-VMware-Virtual-Platform sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+```
+
+**Exporting systemd journal for analysis:**
+```bash
+# Export all journal entries
+journalctl --no-pager > journal.log
+
+# Export only authentication events
+journalctl -u ssh --no-pager > ssh.log
+
+# Export with specific time range
+journalctl --since "2026-01-29 18:00:00" --until "2026-01-29 19:00:00" --no-pager > journal.log
 ```
 
 ## Security Event Detection
@@ -241,7 +281,7 @@ Tabular format with columns:
 
 Handles parsing of log files using regex patterns:
 - `LogParser`: Main parser class
-- Supports Syslog and Apache Common Log Format
+- Supports Syslog, systemd journal (ISO 8601), and Apache Common Log Format
 - Automatic format detection
 
 ### detector.py

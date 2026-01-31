@@ -2,6 +2,7 @@
 Log Parser Module
 Handles parsing of common log formats (Syslog and Apache) using regex.
 Supports Ubuntu system logs: /var/log/syslog, /var/log/auth.log, /var/log/kern.log
+Supports systemd journal format (ISO 8601 timestamps)
 """
 
 import re
@@ -33,6 +34,15 @@ class LogParser:
         r'(?P<message>.*)'
     )
     
+    # Systemd journal format: ISO 8601 timestamp hostname service: message
+    # Example: 2026-01-29T18:23:10.277402+02:00 rahmo-VMware-Virtual-Platform sudo: message
+    SYSTEMD_PATTERN = re.compile(
+        r'(?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:[+-]\d{2}:\d{2}|Z)?)\s+'
+        r'(?P<hostname>[\w\.-]+)\s+'
+        r'(?P<service>[\w\-/]+)(?:\[(?P<pid>\d+)\])?:\s+'
+        r'(?P<message>.*)'
+    )
+    
     # Apache Common Log Format: IP - - [timestamp] "method path protocol" status size
     APACHE_PATTERN = re.compile(
         r'(?P<ip>\d+\.\d+\.\d+\.\d+)\s+'
@@ -49,7 +59,7 @@ class LogParser:
         Initialize the parser.
         
         Args:
-            log_format: Format type ('syslog', 'apache', or 'auto' for detection)
+            log_format: Format type ('syslog', 'systemd', 'apache', or 'auto' for detection)
         """
         self.log_format = log_format
         self.parsed_logs = []
@@ -62,11 +72,13 @@ class LogParser:
             line: A sample log line
             
         Returns:
-            'syslog', 'apache', or None if format cannot be determined
+            'syslog', 'systemd', 'apache', or None if format cannot be determined
         """
         if self.APACHE_PATTERN.match(line):
             return 'apache'
-        elif self.SYSLOG_PATTERN.match(line):
+        elif self.SYSTEMD_PATTERN.match(line):
+            return 'systemd'
+        elif self.SYSLOG_PATTERN.match(line) or self.KERNEL_PATTERN.match(line):
             return 'syslog'
         return None
     
@@ -129,6 +141,30 @@ class LogParser:
         
         return None
     
+    def parse_systemd(self, line: str) -> Optional[Dict]:
+        """
+        Parse a systemd journal format line (ISO 8601 timestamp).
+        Supports modern Ubuntu systems using systemd.
+        
+        Args:
+            line: Log line to parse
+            
+        Returns:
+            Dictionary with parsed fields or None if parsing fails
+        """
+        match = self.SYSTEMD_PATTERN.match(line)
+        if match:
+            return {
+                'format': 'systemd',
+                'timestamp': match.group('timestamp'),
+                'hostname': match.group('hostname'),
+                'service': match.group('service'),
+                'pid': match.group('pid'),
+                'message': match.group('message'),
+                'raw': line
+            }
+        return None
+    
     def parse_apache(self, line: str) -> Optional[Dict]:
         """
         Parse an Apache Common Log Format line.
@@ -173,11 +209,15 @@ class LogParser:
             detected_format = self.detect_format(line)
             if detected_format == 'syslog':
                 return self.parse_syslog(line)
+            elif detected_format == 'systemd':
+                return self.parse_systemd(line)
             elif detected_format == 'apache':
                 return self.parse_apache(line)
             return None
         elif self.log_format == 'syslog':
             return self.parse_syslog(line)
+        elif self.log_format == 'systemd':
+            return self.parse_systemd(line)
         elif self.log_format == 'apache':
             return self.parse_apache(line)
         

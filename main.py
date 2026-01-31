@@ -34,9 +34,9 @@ Examples:
     parser.add_argument(
         '--format',
         type=str,
-        choices=['auto', 'syslog', 'apache'],
+        choices=['auto', 'syslog', 'systemd', 'apache'],
         default='auto',
-        help='Log format type (default: auto-detect)'
+        help='Log format type (default: auto-detect). Supports syslog, systemd (journal), and apache formats'
     )
     
     parser.add_argument(
