@@ -13,12 +13,6 @@ from datetime import datetime
 class LogParser:
     """Parser for common log formats."""
     
-    # Syslog pattern: timestamp hostname service[pid]: message
-    # Supports Ubuntu logs: /var/log/syslog, /var/log/auth.log, /var/log/kern.log
-    # Examples:
-    #   Dec 25 10:15:30 ubuntu-server sshd[1234]: Failed password...
-    #   Dec 25 10:15:30 ubuntu-server kernel: [12345.678] message
-    #   Dec 25 10:15:30 ubuntu-server systemd[1]: Started service
     SYSLOG_PATTERN = re.compile(
         r'(?P<timestamp>\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2})\s+'
         r'(?P<hostname>[\w\.-]+)\s+'
@@ -34,8 +28,7 @@ class LogParser:
         r'(?P<message>.*)'
     )
     
-    # Systemd journal format: ISO 8601 timestamp hostname service: message
-    # Example: 2026-01-29T18:23:10.277402+02:00 rahmo-VMware-Virtual-Platform sudo: message
+
     SYSTEMD_PATTERN = re.compile(
         r'(?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:[+-]\d{2}:\d{2}|Z)?)\s+'
         r'(?P<hostname>[\w\.-]+)\s+'
@@ -44,8 +37,8 @@ class LogParser:
     )
     
     # Apache Common Log Format: IP - - [timestamp] "method path protocol" status size
-    APACHE_PATTERN = re.compile(
-        r'(?P<ip>\d+\.\d+\.\d+\.\d+)\s+'
+    APACHE_COMMON_PATTERN = re.compile(
+        r'(?P<ip>(?:\d{1,3}\.){3}\d{1,3}|::1|[\da-fA-F:]+)\s+'
         r'(?P<ident>[\w\-]+|\-)\s+'
         r'(?P<user>[\w\-]+|\-)\s+'
         r'\[(?P<timestamp>[^\]]+)\]\s+'
@@ -53,6 +46,22 @@ class LogParser:
         r'(?P<status>\d+)\s+'
         r'(?P<size>\d+|\-)'
     )
+    
+    # Apache Combined Log Format: IP - - [timestamp] "method path protocol" status size "referer" "user-agent"
+    APACHE_COMBINED_PATTERN = re.compile(
+        r'(?P<ip>(?:\d{1,3}\.){3}\d{1,3}|::1|[\da-fA-F:]+)\s+'
+        r'(?P<ident>[\w\-]+|\-)\s+'
+        r'(?P<user>[\w\-]+|\-)\s+'
+        r'\[(?P<timestamp>[^\]]+)\]\s+'
+        r'"(?P<method>\w+)\s+(?P<path>[^\s"]+)\s+(?P<protocol>[^"]+)"\s+'
+        r'(?P<status>\d+)\s+'
+        r'(?P<size>\d+|\-)\s+'
+        r'"(?P<referer>[^"]*)"\s+'
+        r'"(?P<user_agent>[^"]*)"'
+    )
+    
+    # Backward compatibility - try combined first, then common
+    APACHE_PATTERN = APACHE_COMBINED_PATTERN
     
     def __init__(self, log_format: str = 'auto'):
         """
@@ -74,7 +83,7 @@ class LogParser:
         Returns:
             'syslog', 'systemd', 'apache', or None if format cannot be determined
         """
-        if self.APACHE_PATTERN.match(line):
+        if self.APACHE_COMBINED_PATTERN.match(line) or self.APACHE_COMMON_PATTERN.match(line):
             return 'apache'
         elif self.SYSTEMD_PATTERN.match(line):
             return 'systemd'
@@ -120,8 +129,7 @@ class LogParser:
                 'raw': line
             }
         
-        # Fallback: Try to parse lines without service name (less common)
-        # Format: timestamp hostname: message
+
         fallback_pattern = re.compile(
             r'(?P<timestamp>\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2})\s+'
             r'(?P<hostname>[\w\.-]+):\s+'
@@ -167,7 +175,8 @@ class LogParser:
     
     def parse_apache(self, line: str) -> Optional[Dict]:
         """
-        Parse an Apache Common Log Format line.
+        Parse an Apache log line (Common or Combined Log Format).
+        Supports IPv4, IPv6 (including ::1), Referer, and User-Agent fields.
         
         Args:
             line: Log line to parse
@@ -175,7 +184,8 @@ class LogParser:
         Returns:
             Dictionary with parsed fields or None if parsing fails
         """
-        match = self.APACHE_PATTERN.match(line)
+        # Try Combined Log Format first (has Referer and User-Agent)
+        match = self.APACHE_COMBINED_PATTERN.match(line)
         if match:
             return {
                 'format': 'apache',
@@ -186,8 +196,28 @@ class LogParser:
                 'protocol': match.group('protocol'),
                 'status': int(match.group('status')),
                 'size': match.group('size'),
+                'referer': match.group('referer'),
+                'user_agent': match.group('user_agent'),
                 'raw': line
             }
+        
+        # Try Common Log Format (no Referer/User-Agent)
+        match = self.APACHE_COMMON_PATTERN.match(line)
+        if match:
+            return {
+                'format': 'apache',
+                'ip': match.group('ip'),
+                'timestamp': match.group('timestamp'),
+                'method': match.group('method'),
+                'path': match.group('path'),
+                'protocol': match.group('protocol'),
+                'status': int(match.group('status')),
+                'size': match.group('size'),
+                'referer': None,
+                'user_agent': None,
+                'raw': line
+            }
+        
         return None
     
     def parse_line(self, line: str) -> Optional[Dict]:

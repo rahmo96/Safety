@@ -5,10 +5,16 @@ Dec 25 10:15:33 server1 sshd[1234]: Failed password for invalid user admin from 
 Dec 25 10:15:34 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
 Dec 25 10:15:35 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
 Dec 25 10:15:36 server1 sshd[1234]: Failed password for invalid user admin from 192.168.1.100
-Dec 25 10:16:00 server1 apache2[5678]: access denied for /admin/config from 192.168.1.102
-Dec 25 10:16:01 server1 apache2[5678]: access denied for /wp-admin from 192.168.1.102
-Dec 25 10:16:02 server1 sshd[1234]: Accepted publickey for user from 192.168.1.101
-Dec 25 10:16:03 server1 apache2[5678]: authentication failure for user test from 192.168.1.103
-Dec 25 10:16:04 server1 apache2[5678]: authentication failure for user test from 192.168.1.103
-Dec 25 10:16:05 server1 apache2[5678]: authentication failure for user test from 192.168.1.103
-
+Dec 25 10:16:00 server1 sshd[1234]: Accepted publickey for user ubuntu from 192.168.1.101 port 54322 ssh2
+Dec 25 10:16:01 server1 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=1000)
+Dec 25 10:16:02 server1 sudo: pam_unix(sudo:session): session closed for user root
+Dec 25 10:16:10 server1 sshd[1235]: Invalid user test from 192.168.1.102 port 54323
+Dec 25 10:16:11 server1 sshd[1235]: Failed password for invalid user test from 192.168.1.102 port 54323 ssh2
+Dec 25 10:16:12 server1 sshd[1235]: Failed password for invalid user test from 192.168.1.102 port 54323 ssh2
+Dec 25 10:16:13 server1 sshd[1235]: Failed password for invalid user test from 192.168.1.102 port 54323 ssh2
+Dec 25 10:16:14 server1 sshd[1235]: Failed password for invalid user test from 192.168.1.102 port 54323 ssh2
+Dec 25 10:16:15 server1 sshd[1235]: Failed password for invalid user test from 192.168.1.102 port 54323 ssh2
+Dec 25 10:16:20 server1 apache2[5678]: access denied for /admin/config from 192.168.1.103
+Dec 25 10:16:21 server1 apache2[5678]: access denied for /wp-admin from 192.168.1.103
+Dec 25 10:16:22 server1 kernel: [12345.678] USB disconnect, address 1
+Dec 25 10:16:23 server1 systemd[1]: Started Network Manager Script Dispatcher Service

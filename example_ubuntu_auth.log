@@ -14,5 +14,3 @@ Dec 25 10:16:12 ubuntu-server sshd[1235]: Failed password for invalid user test 
 Dec 25 10:16:13 ubuntu-server sshd[1235]: Failed password for invalid user test from 192.168.1.102 port 54323 ssh2
 Dec 25 10:16:14 ubuntu-server sshd[1235]: Failed password for invalid user test from 192.168.1.102 port 54323 ssh2
 Dec 25 10:16:15 ubuntu-server sshd[1235]: Failed password for invalid user test from 192.168.1.102 port 54323 ssh2
-Dec 25 10:16:20 ubuntu-server sshd[1236]: Connection closed by authenticating user root 192.168.1.103 port 54324 [preauth]
-Dec 25 10:16:21 ubuntu-server sshd[1236]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.1.103
