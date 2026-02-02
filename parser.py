@@ -285,4 +285,61 @@ class LogParser:
     def get_parsed_logs(self) -> List[Dict]:
         """Return the list of parsed logs."""
         return self.parsed_logs
+    
+    def stream_log(self, file_path: str, follow_from_end: bool = True):
+        """
+        Stream log file in real-time (tail -f behavior).
+        Generator that yields parsed log entries as they appear.
+        
+        Args:
+            file_path: Path to the log file to monitor
+            follow_from_end: If True, start reading from end of file (like tail -f).
+                           If False, read from beginning.
+        
+        Yields:
+            Dictionary with parsed log entry fields
+            
+        Example:
+            for log_entry in parser.stream_log('access.log'):
+                print(log_entry)
+        """
+        import time
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                # Start from end of file if follow_from_end is True
+                if follow_from_end:
+                    f.seek(0, 2)  # Seek to end of file
+                
+                line_number = 0
+                if not follow_from_end:
+                    # Count existing lines if reading from beginning
+                    f.seek(0)
+                    line_number = sum(1 for _ in f)
+                    f.seek(0, 2)  # Go back to end
+                
+                # Continuous monitoring loop
+                while True:
+                    line = f.readline()
+                    
+                    if line:
+                        # New line found, parse it
+                        line_number += 1
+                        parsed = self.parse_line(line)
+                        if parsed:
+                            parsed['line_number'] = line_number
+                            yield parsed
+                    else:
+                        # No new line, wait a bit before checking again
+                        time.sleep(0.1)  # Small delay to avoid CPU spinning
+                        
+        except FileNotFoundError:
+            raise FileNotFoundError(f"Log file not found: {file_path}")
+        except PermissionError:
+            raise PermissionError(f"Permission denied: Cannot read {file_path}")
+        except KeyboardInterrupt:
+            # Allow KeyboardInterrupt to propagate for graceful shutdown
+            raise
+        except Exception as e:
+            raise Exception(f"Error streaming log file: {str(e)}")
 
