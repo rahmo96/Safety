@@ -85,10 +85,23 @@ optional arguments:
 .
 ├── main.py              # CLI entry point
 ├── parser.py            # Log parsing module
-├── detector.py          # Security event detection module
+├── detector.py          # Security event detection engine (plugin-based)
 ├── reporter.py          # Report generation module
+├── base_rule.py        # Abstract base class for security rules
+├── rules/               # Security detection rules (plugins)
+│   ├── __init__.py
+│   ├── brute_force_rule.py      # Brute force detection
+│   ├── path_traversal_rule.py  # Unauthorized access detection
+│   ├── unusual_traffic_rule.py  # Traffic pattern detection
+│   └── example_custom_rule.py   # Example template for new rules
 ├── requirements.txt     # Dependencies (none required)
-└── README.md           # This file
+├── README.md           # Main documentation (this file)
+├── API.md              # Complete API reference
+├── ARCHITECTURE.md     # System architecture and design
+├── PLUGIN_ARCHITECTURE.md  # Plugin system documentation
+├── CHANGELOG.md        # Version history
+├── CONTRIBUTING.md     # Contribution guidelines
+└── example_*.log       # Example log files for testing
 ```
 
 ## Log Format Examples
@@ -312,6 +325,57 @@ Generates reports in various formats:
 **Issue: "Log file not found"**
 - Verify the file path is correct
 - Use absolute paths if relative paths don't work
+
+## License
+
+This tool is provided as-is for educational and security analysis purposes.
+
+## Plugin Architecture
+
+The tool uses a **plugin-based architecture** following the **Open/Closed Principle** (SOLID):
+
+- **Extensible**: Add new security detection rules by simply creating a new file in `rules/`
+- **No Core Modifications**: New rules are automatically discovered and loaded
+- **SOLID Principles**: Follows best practices for maintainable code
+
+**Quick Example - Adding a New Rule:**
+
+1. Create `rules/my_rule.py`:
+```python
+from base_rule import SecurityRule
+
+class MyRule(SecurityRule):
+    def __init__(self):
+        super().__init__(rule_name='my_rule', severity='high')
+    
+    def evaluate(self, log_entry):
+        # Your detection logic
+        return event_dict if threat_detected else None
+```
+
+2. That's it! The rule is automatically loaded and executed.
+
+See **[Plugin Architecture Documentation](PLUGIN_ARCHITECTURE.md)** for complete details.
+
+## Documentation
+
+- **[Quick Start Guide](QUICKSTART.md)** - Get started in minutes
+- **[API Documentation](API.md)** - Complete API reference
+- **[Architecture Documentation](ARCHITECTURE.md)** - System design and architecture
+- **[Plugin Architecture](PLUGIN_ARCHITECTURE.md)** - Plugin system and rule development
+- **[Changelog](CHANGELOG.md)** - Version history
+- **[Contributing Guidelines](CONTRIBUTING.md)** - How to contribute
+
+## Contributing
+
+This is an academic project. Contributions and improvements are welcome!
+
+### Development Guidelines
+
+1. Follow PEP 8 style guidelines
+2. Add docstrings to all functions and classes
+3. Test with various log formats
+4. Update documentation for new features
 
 ## License
 

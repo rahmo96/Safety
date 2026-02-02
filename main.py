@@ -1,6 +1,15 @@
 """
 Main Entry Point
 Command-line interface for the Log Analysis Tool for Security Events.
+
+This module provides the CLI interface for the log analysis tool, orchestrating
+the parsing, detection, and reporting pipeline.
+
+Usage:
+    python main.py <log_file> [options]
+
+Example:
+    python main.py access.log --format apache --output report.json
 """
 
 import argparse

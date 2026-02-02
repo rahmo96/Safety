@@ -1,223 +1,138 @@
 """
 Security Event Detector Module
-Implements rules to identify security threats in parsed logs.
+Implements plugin-based security detection using dynamically loaded rules.
+Follows the Open/Closed Principle: open for extension, closed for modification.
 """
 
-import re
-from typing import List, Dict, Set, Optional
+import os
+import importlib
+import inspect
+from typing import List, Dict
 from collections import defaultdict
-from datetime import datetime, timedelta
+from base_rule import SecurityRule
 
 
 class SecurityDetector:
-    """Detects security events in parsed logs."""
+    """
+    Detects security events in parsed logs using dynamically loaded rules.
+    
+    This class automatically discovers and loads all SecurityRule implementations
+    from the rules/ directory, demonstrating the Open/Closed Principle.
+    New security rules can be added by simply creating a new file in rules/
+    without modifying this class.
+    """
     
     def __init__(self, 
                  failed_login_threshold: int = 5,
                  suspicious_paths: List[str] = None,
-                 traffic_threshold: int = 100):
+                 traffic_threshold: int = 100,
+                 rules_directory: str = 'rules'):
         """
-        Initialize the security detector.
+        Initialize the security detector with dynamic rule loading.
         
         Args:
-            failed_login_threshold: Number of failed login attempts to trigger alert
-            suspicious_paths: List of sensitive paths to monitor
-            traffic_threshold: Number of requests per IP to flag as unusual traffic
+            failed_login_threshold: Threshold for brute force detection (passed to BruteForceRule)
+            suspicious_paths: List of sensitive paths (passed to PathTraversalRule)
+            traffic_threshold: Threshold for unusual traffic (passed to UnusualTrafficRule)
+            rules_directory: Directory containing rule modules (default: 'rules')
         """
-        self.failed_login_threshold = failed_login_threshold
-        self.suspicious_paths = suspicious_paths or [
-            '/admin', '/wp-admin', '/phpmyadmin', '/.env', 
-            '/config', '/etc/passwd', '/root', '/.ssh'
-        ]
-        self.traffic_threshold = traffic_threshold
+        self.rules_directory = rules_directory
+        self.rules = []
         self.detected_events = []
-        # IP address pattern for extraction from messages
-        self.ip_pattern = re.compile(r'\b(?:\d{1,3}\.){3}\d{1,3}\b')
+        
+        # Configuration for rules (can be passed to rule constructors)
+        self.config = {
+            'failed_login_threshold': failed_login_threshold,
+            'suspicious_paths': suspicious_paths or [
+                '/admin', '/wp-admin', '/phpmyadmin', '/.env',
+                '/config', '/etc/passwd', '/root', '/.ssh'
+            ],
+            'traffic_threshold': traffic_threshold
+        }
+        
+        # Dynamically load all rules
+        self._load_rules()
     
-    def _extract_ip(self, log: Dict) -> str:
+    def _load_rules(self):
         """
-        Extract IP address from log entry.
-        Handles both Apache (direct IP field) and Syslog (IP in message) formats.
+        Dynamically discover and load all SecurityRule implementations.
         
-        Args:
-            log: Parsed log entry
-            
-        Returns:
-            IP address string or 'unknown'
+        Scans the rules/ directory for Python modules and automatically
+        instantiates all classes that inherit from SecurityRule.
         """
-        # Apache format has direct IP field
-        if 'ip' in log and log['ip'] != 'unknown':
-            return log['ip']
+        if not os.path.exists(self.rules_directory):
+            print(f"Warning: Rules directory '{self.rules_directory}' not found. No rules loaded.")
+            return
         
-        # Syslog format: extract IP from message
-        message = log.get('message', '') or log.get('raw', '')
-        if message:
-            ip_matches = self.ip_pattern.findall(message)
-            if ip_matches:
-                return ip_matches[-1]  # Return last IP found (usually the source)
-        
-        return 'unknown'
-    
-    def detect_failed_logins(self, logs: List[Dict]) -> List[Dict]:
-        """
-        Detect brute force attempts (multiple failed login attempts).
-        
-        Args:
-            logs: List of parsed log entries
-            
-        Returns:
-            List of detected failed login events
-        """
-        events = []
-        ip_failures = defaultdict(int)
-        ip_details = defaultdict(list)
-        
-        # Patterns for failed login attempts
-        failed_login_patterns = [
-            'failed password', 'authentication failure', 'invalid user',
-            'login failed', 'access denied', 'unauthorized', '401', '403'
+        # Get all Python files in rules directory
+        rule_files = [
+            f[:-3]  # Remove .py extension
+            for f in os.listdir(self.rules_directory)
+            if f.endswith('.py') and not f.startswith('__')
         ]
         
-        for log in logs:
-            message = log.get('message', '').lower()
-            status = log.get('status', 0)
-            ip = self._extract_ip(log)
-            
-            # Check for failed login indicators
-            is_failed_login = False
-            
-            # Check status codes
-            if status in [401, 403]:
-                is_failed_login = True
-            
-            # Check message patterns
-            if any(pattern in message for pattern in failed_login_patterns):
-                is_failed_login = True
-            
-            if is_failed_login:
-                ip_failures[ip] += 1
-                ip_details[ip].append({
-                    'timestamp': log.get('timestamp', 'unknown'),
-                    'line_number': log.get('line_number', 0),
-                    'message': log.get('message', log.get('raw', ''))
-                })
+        if not rule_files:
+            print(f"Warning: No rule files found in '{self.rules_directory}' directory.")
+            return
         
-        # Generate events for IPs exceeding threshold
-        for ip, count in ip_failures.items():
-            if count >= self.failed_login_threshold:
-                events.append({
-                    'type': 'failed_login_attempts',
-                    'severity': 'high',
-                    'ip': ip,
-                    'count': count,
-                    'threshold': self.failed_login_threshold,
-                    'details': ip_details[ip],
-                    'description': f'Brute force detected: {ip} attempted {count} failed logins'
-                })
+        # Import and instantiate rules
+        for rule_file in rule_files:
+            try:
+                # Import the module
+                module = importlib.import_module(f'{self.rules_directory}.{rule_file}')
+                
+                # Find all classes in the module that inherit from SecurityRule
+                for name, obj in inspect.getmembers(module, inspect.isclass):
+                    if (issubclass(obj, SecurityRule) and 
+                        obj is not SecurityRule and 
+                        obj.__module__ == module.__name__):
+                        
+                        # Instantiate the rule with appropriate configuration
+                        rule_instance = self._instantiate_rule(obj)
+                        if rule_instance:
+                            self.rules.append(rule_instance)
+                            print(f"Loaded rule: {rule_instance.rule_name} ({obj.__name__})")
+            
+            except Exception as e:
+                print(f"Warning: Failed to load rule from '{rule_file}': {str(e)}")
+                continue
         
-        return events
+        if not self.rules:
+            print("Warning: No security rules were loaded.")
+        else:
+            print(f"Successfully loaded {len(self.rules)} security rule(s)")
     
-    def detect_unauthorized_access(self, logs: List[Dict]) -> List[Dict]:
+    def _instantiate_rule(self, rule_class):
         """
-        Detect unauthorized access attempts to sensitive paths.
+        Instantiate a rule class with appropriate configuration.
         
         Args:
-            logs: List of parsed log entries
+            rule_class: The rule class to instantiate
             
         Returns:
-            List of detected unauthorized access events
+            Instantiated rule object or None if instantiation fails
         """
-        events = []
-        ip_accesses = defaultdict(lambda: defaultdict(int))
-        
-        for log in logs:
-            path = log.get('path', '').lower()
-            ip = self._extract_ip(log)
-            status = log.get('status', 0)
+        try:
+            # Try to match rule class names to configuration
+            class_name = rule_class.__name__.lower()
             
-            # Check if path matches suspicious patterns
-            for suspicious_path in self.suspicious_paths:
-                if suspicious_path.lower() in path:
-                    # Flag both successful and failed attempts
-                    if status in [200, 301, 302]:  # Successful access
-                        ip_accesses[ip][suspicious_path] += 1
-                        events.append({
-                            'type': 'unauthorized_access',
-                            'severity': 'critical',
-                            'ip': ip,
-                            'path': path,
-                            'status': status,
-                            'timestamp': log.get('timestamp', 'unknown'),
-                            'line_number': log.get('line_number', 0),
-                            'description': f'Unauthorized access attempt to {path} from {ip}'
-                        })
-                    elif status in [401, 403, 404]:  # Failed but suspicious
-                        ip_accesses[ip][suspicious_path] += 1
-                        events.append({
-                            'type': 'unauthorized_access_attempt',
-                            'severity': 'high',
-                            'ip': ip,
-                            'path': path,
-                            'status': status,
-                            'timestamp': log.get('timestamp', 'unknown'),
-                            'line_number': log.get('line_number', 0),
-                            'description': f'Suspicious access attempt to {path} from {ip}'
-                        })
+            if 'bruteforce' in class_name or 'brute_force' in class_name:
+                return rule_class(threshold=self.config['failed_login_threshold'])
+            elif 'path' in class_name or 'traversal' in class_name:
+                return rule_class(suspicious_paths=self.config['suspicious_paths'])
+            elif 'traffic' in class_name or 'unusual' in class_name:
+                return rule_class(threshold=self.config['traffic_threshold'])
+            else:
+                # Default: try to instantiate with no arguments
+                return rule_class()
         
-        return events
-    
-    def detect_unusual_traffic(self, logs: List[Dict]) -> List[Dict]:
-        """
-        Detect unusual traffic volume or patterns.
-        
-        Args:
-            logs: List of parsed log entries
-            
-        Returns:
-            List of detected unusual traffic events
-        """
-        events = []
-        ip_counts = defaultdict(int)
-        ip_methods = defaultdict(lambda: defaultdict(int))
-        
-        # Count requests per IP
-        for log in logs:
-            ip = self._extract_ip(log)
-            if ip != 'unknown':
-                ip_counts[ip] += 1
-                method = log.get('method', 'unknown')
-                ip_methods[ip][method] += 1
-        
-        # Identify IPs with unusual traffic
-        for ip, count in ip_counts.items():
-            if count >= self.traffic_threshold:
-                # Analyze request patterns
-                methods = ip_methods[ip]
-                method_distribution = {m: c for m, c in methods.items()}
-                
-                # Check for suspicious patterns
-                suspicious_patterns = []
-                if methods.get('POST', 0) > count * 0.7:  # Mostly POST requests
-                    suspicious_patterns.append('High POST request ratio')
-                if methods.get('GET', 0) > count * 0.9:  # Mostly GET requests (scraping)
-                    suspicious_patterns.append('Potential web scraping')
-                
-                events.append({
-                    'type': 'unusual_traffic',
-                    'severity': 'medium',
-                    'ip': ip,
-                    'request_count': count,
-                    'threshold': self.traffic_threshold,
-                    'method_distribution': method_distribution,
-                    'patterns': suspicious_patterns,
-                    'description': f'Unusual traffic volume from {ip}: {count} requests'
-                })
-        
-        return events
+        except Exception as e:
+            print(f"Warning: Failed to instantiate {rule_class.__name__}: {str(e)}")
+            return None
     
     def analyze(self, logs: List[Dict]) -> Dict:
         """
-        Perform comprehensive security analysis on logs.
+        Perform comprehensive security analysis on logs using all loaded rules.
         
         Args:
             logs: List of parsed log entries
@@ -227,13 +142,24 @@ class SecurityDetector:
         """
         self.detected_events = []
         
-        # Run all detection methods
-        failed_logins = self.detect_failed_logins(logs)
-        unauthorized_access = self.detect_unauthorized_access(logs)
-        unusual_traffic = self.detect_unusual_traffic(logs)
+        # Reset rules that have state (for aggregation-based rules)
+        for rule in self.rules:
+            if hasattr(rule, 'reset'):
+                rule.reset()
         
-        # Combine all events
-        self.detected_events = failed_logins + unauthorized_access + unusual_traffic
+        # Process each log entry through all rules
+        for log_entry in logs:
+            for rule in self.rules:
+                event = rule.evaluate(log_entry)
+                if event:
+                    self.detected_events.append(event)
+        
+        # Finalize rules that need aggregation (e.g., brute force, traffic)
+        for rule in self.rules:
+            if hasattr(rule, 'finalize'):
+                events = rule.finalize()
+                if events:
+                    self.detected_events.extend(events)
         
         # Calculate statistics
         total_events = len(self.detected_events)
@@ -265,4 +191,7 @@ class SecurityDetector:
     def get_events(self) -> List[Dict]:
         """Return the list of detected events."""
         return self.detected_events
-
+    
+    def get_loaded_rules(self) -> List[SecurityRule]:
+        """Return list of loaded security rules."""
+        return self.rules
