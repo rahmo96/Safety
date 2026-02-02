@@ -63,7 +63,8 @@ class BruteForceRule(SecurityRule):
         # Store log for final processing
         self.processed_logs.append(log_entry)
         
-        message = log_entry.get('message', '').lower()
+        # Handle None values - some log formats may not have 'message' field
+        message = (log_entry.get('message') or log_entry.get('raw') or '').lower()
         status = log_entry.get('status', 0)
         ip = self._extract_ip(log_entry)
         

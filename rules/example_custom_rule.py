@@ -50,7 +50,8 @@ class ExampleCustomRule(SecurityRule):
             Detection event dictionary or None
         """
         # Check if this is an Apache log with user_agent field
-        user_agent = log_entry.get('user_agent', '').lower()
+        # Handle None values - systemd/syslog logs don't have 'user_agent' field
+        user_agent = (log_entry.get('user_agent') or '').lower()
         
         if not user_agent:
             return None

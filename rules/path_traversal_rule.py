@@ -56,11 +56,13 @@ class PathTraversalRule(SecurityRule):
         Returns:
             Detection event dictionary if threat detected, None otherwise
         """
-        path = log_entry.get('path', '').lower()
+        # Handle None values - systemd/syslog logs don't have 'path' field
+        path = (log_entry.get('path') or '').lower()
         ip = self._extract_ip(log_entry)
         status = log_entry.get('status', 0)
         
-        if ip == 'unknown':
+        # Skip if no path (systemd/syslog logs) or no IP
+        if not path or ip == 'unknown':
             return None
         
         # Check if path matches suspicious patterns
