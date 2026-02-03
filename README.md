@@ -4,7 +4,7 @@ A Python-based security log analysis tool that parses system logs, detects secur
 
 ## Features
 
-- **Multi-Format Log Parsing**: Supports Apache (Common/Combined), Syslog, and Systemd journal formats
+- **Multi-Format Log Parsing**: Supports Apache (Common/Combined), Syslog, Systemd journal, and Windows Event Viewer CSV formats
 - **Real-Time Monitoring**: Stream log files in real-time with immediate security alerts (like `tail -f`)
 - **Plugin Architecture**: Extensible rule system - add new detection rules without modifying core code
 - **Security Event Detection**:
@@ -200,6 +200,32 @@ journalctl --no-pager > journal.log
 # Analyze
 python main.py journal.log --format systemd
 ```
+
+### Windows Event Viewer CSV Format
+
+**Windows Event Log Export:**
+```
+TimeCreated,Id,Message,Level,Task,Opcode,Keywords,EventRecordID,ProviderName,...
+2026-02-02T10:00:01.123Z,4625,"An account failed to log on. Source Network Address: 192.168.1.100 Target User Name: admin",...
+```
+
+**Usage:**
+```bash
+# Export Windows Event Viewer logs to CSV
+# In Event Viewer: Right-click log → Save All Events As → CSV format
+
+# Analyze Windows CSV
+python main.py windows_events.csv --format windows_csv
+
+# Auto-detect format
+python main.py windows_events.csv --format auto
+```
+
+**Features:**
+- Automatically detects Windows CSV format by header row
+- Maps `TimeCreated` → `timestamp`, `Id` → `event_id`, `Message` → `message`
+- Extracts IP addresses and usernames from Event ID 4625 (failed logon)
+- Unified reporting format across Windows and Linux logs
 
 ## Plugin Architecture
 

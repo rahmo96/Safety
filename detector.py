@@ -118,6 +118,9 @@ class SecurityDetector:
             
             if 'bruteforce' in class_name or 'brute_force' in class_name:
                 return rule_class(threshold=self.config['failed_login_threshold'])
+            elif 'windows' in class_name and ('bruteforce' in class_name or 'brute_force' in class_name):
+                # Windows brute force rule also uses failed_login_threshold
+                return rule_class(threshold=self.config['failed_login_threshold'])
             elif 'path' in class_name or 'traversal' in class_name:
                 return rule_class(suspicious_paths=self.config['suspicious_paths'])
             elif 'traffic' in class_name or 'unusual' in class_name:

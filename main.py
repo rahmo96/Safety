@@ -52,9 +52,9 @@ Examples:
     parser.add_argument(
         '--format',
         type=str,
-        choices=['auto', 'syslog', 'systemd', 'apache'],
+        choices=['auto', 'syslog', 'systemd', 'apache', 'windows_csv'],
         default='auto',
-        help='Log format type (default: auto-detect). Supports syslog, systemd (journal), and apache formats'
+        help='Log format type (default: auto-detect). Supports syslog, systemd (journal), apache, and windows_csv formats'
     )
     
     parser.add_argument(

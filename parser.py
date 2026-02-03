@@ -3,9 +3,11 @@ Log Parser Module
 Handles parsing of common log formats (Syslog and Apache) using regex.
 Supports Ubuntu system logs: /var/log/syslog, /var/log/auth.log, /var/log/kern.log
 Supports systemd journal format (ISO 8601 timestamps)
+Supports Windows Event Viewer CSV exports
 """
 
 import re
+import csv
 from typing import List, Dict, Optional
 from datetime import datetime
 
@@ -68,10 +70,11 @@ class LogParser:
         Initialize the parser.
         
         Args:
-            log_format: Format type ('syslog', 'systemd', 'apache', or 'auto' for detection)
+            log_format: Format type ('syslog', 'systemd', 'apache', 'windows_csv', or 'auto' for detection)
         """
         self.log_format = log_format
         self.parsed_logs = []
+        self.windows_csv_headers = None  # Store headers for Windows CSV detection
     
     def detect_format(self, line: str) -> Optional[str]:
         """
@@ -81,15 +84,44 @@ class LogParser:
             line: A sample log line
             
         Returns:
-            'syslog', 'systemd', 'apache', or None if format cannot be determined
+            'syslog', 'systemd', 'apache', 'windows_csv', or None if format cannot be determined
         """
-        if self.APACHE_COMBINED_PATTERN.match(line) or self.APACHE_COMMON_PATTERN.match(line):
+        # Check for Windows CSV format (header row)
+        if self._is_windows_csv_header(line):
+            return 'windows_csv'
+        elif self.APACHE_COMBINED_PATTERN.match(line) or self.APACHE_COMMON_PATTERN.match(line):
             return 'apache'
         elif self.SYSTEMD_PATTERN.match(line):
             return 'systemd'
         elif self.SYSLOG_PATTERN.match(line) or self.KERNEL_PATTERN.match(line):
             return 'syslog'
         return None
+    
+    def _is_windows_csv_header(self, line: str) -> bool:
+        indicators = ['TimeCreated', 'Id', 'Date and Time', 'Event ID', 'Task Category']
+        line_upper = line.upper()
+        return any(ind.upper() in line_upper for ind in indicators) and ',' in line
+
+    def parse_windows_csv(self, file_path: str) -> List[Dict]:
+        self.parsed_logs = []
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                csv_reader = csv.DictReader(f)
+                for line_num, row in enumerate(csv_reader, 1):
+                    # כאן הקסם: "מיפוי גמיש" שמתאים לקובץ שלך
+                    parsed_entry = {
+                        'format': 'windows_csv',
+                        'timestamp': row.get('Date and Time') or row.get('TimeCreated', 'N/A'),
+                        'event_id': row.get('Event ID') or row.get('Id', 'N/A'),
+                        'message': row.get('Task Category') or row.get('Message', ''),
+                        'raw': str(row),
+                        'line_number': line_num
+                    }
+                    self.parsed_logs.append(parsed_entry)
+            return self.parsed_logs
+        except Exception as e:
+            print(f"Error: {e}")
+            return []
     
     def parse_syslog(self, line: str) -> Optional[Dict]:
         """
@@ -173,6 +205,104 @@ class LogParser:
             }
         return None
     
+        """
+        Parse Windows Event Viewer CSV export file.
+        
+        Supports multiple Windows Event Viewer CSV formats:
+        - Standard format: TimeCreated, Id, Message
+        - Variant format: Date and Time, Event ID, Task Category
+        
+        Maps Windows Event Viewer fields to standard format using coalesce approach:
+        - 'timestamp': 'Date and Time' or 'TimeCreated'
+        - 'event_id': 'Event ID' or 'Id'
+        - 'message': 'Task Category' or 'Message'
+        - Extracts additional fields as available (Level, Keywords, Source, etc.)
+        
+        Uses coalesce mechanism to avoid KeyError exceptions when one header variant is missing.
+        
+        Args:
+            file_path: Path to the Windows CSV file
+            
+        Returns:
+            List of parsed log entries
+        """
+        self.parsed_logs = []
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                # Read CSV file
+                csv_reader = csv.DictReader(f)
+                
+                # Store headers for reference
+                self.windows_csv_headers = csv_reader.fieldnames
+                
+                for line_num, row in enumerate(csv_reader, 1):
+                    # Map Windows Event Viewer fields to standard format
+                    # Handle None values from CSV (empty cells)
+                    def safe_get(key, default=''):
+                        val = row.get(key, default)
+                        return val if val is not None else default
+                    
+                    # Coalesce function: tries multiple keys and returns first non-empty value
+                    def coalesce(*keys, default=''):
+                        """Try multiple keys and return first non-empty value."""
+                        for key in keys:
+                            val = row.get(key)
+                            if val is not None and str(val).strip():
+                                return val
+                        return default
+                    
+                    # Field mapping with fallback mechanism
+                    # timestamp: Try "Date and Time" first (variant), then "TimeCreated" (standard)
+                    timestamp = coalesce('Date and Time', 'TimeCreated', default='')
+                    
+                    # event_id: Try "Event ID" first (variant), then "Id" (standard)
+                    event_id = coalesce('Event ID', 'Id', default='')
+                    
+                    # message: Try "Task Category" first (variant), then "Message" (standard)
+                    message = coalesce('Task Category', 'Message', default='')
+                    
+                    parsed_entry = {
+                        'format': 'windows_csv',
+                        'timestamp': timestamp,
+                        'event_id': event_id,
+                        'message': message,
+                        'level': safe_get('Level'),
+                        'task': safe_get('Task'),
+                        'opcode': safe_get('Opcode'),
+                        'keywords': safe_get('Keywords'),
+                        'source': safe_get('Source'),  # Common in variant format
+                        'event_record_id': safe_get('EventRecordID'),
+                        'provider_name': safe_get('ProviderName'),
+                        'provider_guid': safe_get('ProviderGuid'),
+                        'log_name': safe_get('LogName'),
+                        'process_id': safe_get('ProcessId'),
+                        'thread_id': safe_get('ThreadId'),
+                        'machine_name': safe_get('MachineName'),
+                        'user_id': safe_get('UserId'),
+                        'time_created': timestamp,  # Keep original field name too
+                        'raw': ','.join([f"{k}={v}" for k, v in row.items() if k is not None]),
+                        'line_number': line_num
+                    }
+                    
+                    # Add all other fields from CSV
+                    for key, value in row.items():
+                        if key and key not in parsed_entry:
+                            # Handle None keys and ensure key is a string
+                            normalized_key = str(key).lower().replace(' ', '_')
+                            parsed_entry[normalized_key] = value
+                    
+                    self.parsed_logs.append(parsed_entry)
+        
+        except FileNotFoundError:
+            raise FileNotFoundError(f"Log file not found: {file_path}")
+        except PermissionError:
+            raise PermissionError(f"Permission denied: Cannot read {file_path}")
+        except Exception as e:
+            raise Exception(f"Error reading Windows CSV file: {str(e)}")
+        
+        return self.parsed_logs
+    
     def parse_apache(self, line: str) -> Optional[Dict]:
         """
         Parse an Apache log line (Common or Combined Log Format).
@@ -224,6 +354,8 @@ class LogParser:
         """
         Parse a single log line based on configured format.
         
+        Note: Windows CSV format requires parse_windows_csv() method as it's a file-based format.
+        
         Args:
             line: Log line to parse
             
@@ -243,6 +375,7 @@ class LogParser:
                 return self.parse_systemd(line)
             elif detected_format == 'apache':
                 return self.parse_apache(line)
+            # Windows CSV is file-based, not line-based
             return None
         elif self.log_format == 'syslog':
             return self.parse_syslog(line)
@@ -250,6 +383,9 @@ class LogParser:
             return self.parse_systemd(line)
         elif self.log_format == 'apache':
             return self.parse_apache(line)
+        # Windows CSV format requires parse_windows_csv() method
+        elif self.log_format == 'windows_csv':
+            return None  # Not supported for line-by-line parsing
         
         return None
     
@@ -257,6 +393,7 @@ class LogParser:
         """
         Parse a log file and return list of parsed entries.
         Uses read-only file access for security.
+        Automatically detects Windows CSV format and uses appropriate parser.
         
         Args:
             file_path: Path to the log file
@@ -266,6 +403,11 @@ class LogParser:
         """
         self.parsed_logs = []
         
+        # Check if file is Windows CSV format
+        if self.log_format == 'windows_csv' or (self.log_format == 'auto' and self._detect_windows_csv_file(file_path)):
+            return self.parse_windows_csv(file_path)
+        
+        # Standard line-by-line parsing for other formats
         try:
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 for line_num, line in enumerate(f, 1):
@@ -281,6 +423,23 @@ class LogParser:
             raise Exception(f"Error reading log file: {str(e)}")
         
         return self.parsed_logs
+    
+    def _detect_windows_csv_file(self, file_path: str) -> bool:
+        """
+        Detect if a file is Windows Event Viewer CSV format by reading first line.
+        
+        Args:
+            file_path: Path to the file
+            
+        Returns:
+            True if file appears to be Windows CSV format
+        """
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                first_line = f.readline()
+                return self._is_windows_csv_header(first_line)
+        except Exception:
+            return False
     
     def get_parsed_logs(self) -> List[Dict]:
         """Return the list of parsed logs."""
