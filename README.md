@@ -1,11 +1,10 @@
 # Log Analysis Tool for Security Events
 
-A Python-based security log analysis tool that parses system logs, detects security threats, and generates comprehensive reports. Features **real-time streaming monitoring** and a **plugin-based architecture** following SOLID principles.
+A Python-based security log analysis tool that parses system logs, detects security threats, and generates comprehensive reports. Features a **plugin-based architecture** following SOLID principles.
 
 ## Features
 
 - **Multi-Format Log Parsing**: Supports Apache (Common/Combined), Syslog, Systemd journal, and Windows Event Viewer CSV formats
-- **Real-Time Monitoring**: Stream log files in real-time with immediate security alerts (like `tail -f`)
 - **Plugin Architecture**: Extensible rule system - add new detection rules without modifying core code
 - **Security Event Detection**:
   - Failed login attempts (Brute force detection)
@@ -14,7 +13,7 @@ A Python-based security log analysis tool that parses system logs, detects secur
 - **Report Generation**: Creates structured reports in JSON, CSV, or text format
 - **CLI Interface**: Simple command-line interface with comprehensive options
 - **Cross-Platform**: Works on Windows, Linux (Ubuntu), and macOS
-- **Memory Efficient**: Generator-based streaming for large log files
+- **Memory Efficient**: Efficient processing for large log files
 
 ## Requirements
 
@@ -33,27 +32,12 @@ A Python-based security log analysis tool that parses system logs, detects secur
 
 ## Quick Start
 
-### Batch Analysis
-
 ```bash
 # Analyze a log file
 python main.py access.log
 
 # Generate JSON report
 python main.py access.log --output report.json --output-format json
-```
-
-### Real-Time Monitoring
-
-```bash
-# Monitor log file in real-time (from end, like tail -f)
-python main.py access.log --live
-
-# Monitor from beginning of file
-python main.py access.log --live --from-beginning
-
-# Monitor system logs
-python main.py /var/log/auth.log --live --format syslog
 ```
 
 ## Usage
@@ -80,8 +64,6 @@ optional arguments:
   --traffic-threshold N Threshold for unusual traffic volume per IP (default: 100)
   --suspicious-paths PATH [PATH ...]
                         Additional suspicious paths to monitor
-  --live, --follow      Enable real-time monitoring mode (tail -f behavior)
-  --from-beginning      When using --live, start from beginning instead of end
 ```
 
 ## Examples
@@ -113,34 +95,12 @@ optional arguments:
    python main.py access.log --suspicious-paths /api/admin /private /secret
    ```
 
-### Real-Time Monitoring Examples
-
-1. **Monitor Apache access logs:**
-   ```bash
-   python main.py /var/log/apache2/access.log --live --format apache
-   ```
-
-2. **Monitor Ubuntu auth logs:**
-   ```bash
-   sudo python main.py /var/log/auth.log --live --format syslog
-   ```
-
-3. **Monitor from beginning:**
-   ```bash
-   python main.py access.log --live --from-beginning
-   ```
-
-4. **Monitor with custom thresholds:**
-   ```bash
-   python main.py access.log --live --failed-threshold 3
-   ```
-
 ## Project Structure
 
 ```
 .
 ├── main.py              # CLI entry point
-├── parser.py            # Log parsing module (supports streaming)
+├── parser.py            # Log parsing module
 ├── detector.py          # Security event detection engine (plugin-based)
 ├── reporter.py          # Report generation module
 ├── base_rule.py         # Abstract base class for security rules
@@ -258,38 +218,6 @@ class MyRule(SecurityRule):
 
 2. That's it! The rule is automatically loaded and executed.
 
-## Real-Time Monitoring
-
-### Features
-
-- **Generator-Based Streaming**: Memory-efficient processing
-- **Immediate Alerts**: Security events displayed as they occur
-- **Continuous Monitoring**: Follows log file like `tail -f`
-- **Graceful Shutdown**: Ctrl+C shows final summary
-
-### Example Output
-
-```
-======================================================================
-REAL-TIME LOG MONITORING MODE
-======================================================================
-Monitoring: access.log
-Format: apache
-Starting from: end
-Press Ctrl+C to stop and view summary
-======================================================================
-
-[2026-02-02 22:00:15] ⚠️ [HIGH] unauthorized_access_attempt
-  Description: Suspicious access attempt to /admin from 192.168.1.100
-  IP Address: 192.168.1.100
-  Path: /admin
-
-[2026-02-02 22:00:20] 🚨 [CRITICAL] unauthorized_access
-  Description: Unauthorized access attempt to /admin/config from 192.168.1.100
-  IP Address: 192.168.1.100
-  Path: /admin/config
-```
-
 ## Security Event Detection
 
 ### Failed Login Attempts (Brute Force)
@@ -369,9 +297,6 @@ python main.py auth.log --format syslog
 # Systemd journal format
 journalctl --no-pager > journal.log
 python main.py journal.log --format systemd
-
-# Real-time monitoring
-sudo python main.py /var/log/auth.log --live --format syslog
 ```
 
 ## Troubleshooting
@@ -410,11 +335,6 @@ sudo python main.py /var/log/auth.log --live --format syslog
 - **Dynamic Discovery**: Automatically loads rules from `rules/` directory
 - **Open/Closed Principle**: Open for extension, closed for modification
 
-### Streaming Architecture
-
-- **Generator Pattern**: Memory-efficient one-entry-at-a-time processing
-- **Real-Time Processing**: Immediate analysis and alerting
-- **Continuous Monitoring**: Follows log file continuously
 
 ## Contributing
 
