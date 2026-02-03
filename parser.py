@@ -1,10 +1,3 @@
-"""
-Log Parser Module
-Handles parsing of common log formats (Syslog and Apache) using regex.
-Supports Ubuntu system logs: /var/log/syslog, /var/log/auth.log, /var/log/kern.log
-Supports systemd journal format (ISO 8601 timestamps)
-Supports Windows Event Viewer CSV exports
-"""
 
 import re
 import csv
@@ -15,12 +8,6 @@ from datetime import datetime
 class LogParser:
     """Parser for common log formats."""
     
-    SYSLOG_PATTERN = re.compile(
-        r'(?P<timestamp>\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2})\s+'
-        r'(?P<hostname>[\w\.-]+)\s+'
-        r'(?P<service>[\w\-/]+)(?:\[(?P<pid>\d+)\])?:\s+'
-        r'(?P<message>.*)'
-    )
     
     # Kernel log pattern (special case for Ubuntu kernel logs)
     KERNEL_PATTERN = re.compile(
@@ -70,7 +57,7 @@ class LogParser:
         Initialize the parser.
         
         Args:
-            log_format: Format type ('syslog', 'systemd', 'apache', 'windows_csv', or 'auto' for detection)
+            log_format: Format type ( 'systemd', 'apache', 'windows_csv', or 'auto' for detection)
         """
         self.log_format = log_format
         self.parsed_logs = []
@@ -84,7 +71,7 @@ class LogParser:
             line: A sample log line
             
         Returns:
-            'syslog', 'systemd', 'apache', 'windows_csv', or None if format cannot be determined
+             'systemd', 'apache', 'windows_csv', or None if format cannot be determined
         """
         # Check for Windows CSV format (header row)
 
@@ -92,8 +79,6 @@ class LogParser:
             return 'apache'
         elif self.SYSTEMD_PATTERN.match(line):
             return 'systemd'
-        elif self.SYSLOG_PATTERN.match(line) or self.KERNEL_PATTERN.match(line):
-            return 'syslog'
         return None
     
         self.parsed_logs = []
@@ -115,63 +100,6 @@ class LogParser:
             print(f"Error: {e}")
             return []
     
-    def parse_syslog(self, line: str) -> Optional[Dict]:
-        """
-        Parse a Syslog format line.
-        Supports Ubuntu logs: /var/log/syslog, /var/log/auth.log, /var/log/kern.log
-        
-        Args:
-            line: Log line to parse
-            
-        Returns:
-            Dictionary with parsed fields or None if parsing fails
-        """
-        # Try kernel log pattern first (special case)
-        kernel_match = self.KERNEL_PATTERN.match(line)
-        if kernel_match:
-            return {
-                'format': 'syslog',
-                'timestamp': kernel_match.group('timestamp'),
-                'hostname': kernel_match.group('hostname'),
-                'service': 'kernel',
-                'pid': None,
-                'kernel_time': kernel_match.group('kern_time'),
-                'message': kernel_match.group('message'),
-                'raw': line
-            }
-        
-        # Try standard syslog pattern
-        match = self.SYSLOG_PATTERN.match(line)
-        if match:
-            return {
-                'format': 'syslog',
-                'timestamp': match.group('timestamp'),
-                'hostname': match.group('hostname'),
-                'service': match.group('service'),
-                'pid': match.group('pid'),
-                'message': match.group('message'),
-                'raw': line
-            }
-        
-
-        fallback_pattern = re.compile(
-            r'(?P<timestamp>\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2})\s+'
-            r'(?P<hostname>[\w\.-]+):\s+'
-            r'(?P<message>.*)'
-        )
-        fallback_match = fallback_pattern.match(line)
-        if fallback_match:
-            return {
-                'format': 'syslog',
-                'timestamp': fallback_match.group('timestamp'),
-                'hostname': fallback_match.group('hostname'),
-                'service': 'unknown',
-                'pid': None,
-                'message': fallback_match.group('message'),
-                'raw': line
-            }
-        
-        return None
     
     def parse_systemd(self, line: str) -> Optional[Dict]:
         """
@@ -361,16 +289,12 @@ class LogParser:
         # Auto-detect format if needed
         if self.log_format == 'auto':
             detected_format = self.detect_format(line)
-            if detected_format == 'syslog':
-                return self.parse_syslog(line)
-            elif detected_format == 'systemd':
+            if detected_format == 'systemd':
                 return self.parse_systemd(line)
             elif detected_format == 'apache':
                 return self.parse_apache(line)
             # Windows CSV is file-based, not line-based
-            return None
-        elif self.log_format == 'syslog':
-            return self.parse_syslog(line)
+
         elif self.log_format == 'systemd':
             return self.parse_systemd(line)
         elif self.log_format == 'apache':
