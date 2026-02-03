@@ -51,7 +51,7 @@ class ExampleCustomRule(SecurityRule):
         """
         # Check if this is an Apache log with user_agent field
         # Handle None values - systemd/syslog logs don't have 'user_agent' field
-        user_agent = (log_entry.get('user_agent') or '').lower()
+        user_agent = (log_entry.get('user_agent') or log_entry.get('message') or '').lower()
         
         if not user_agent:
             return None

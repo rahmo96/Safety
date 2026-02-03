@@ -1,0 +1,445 @@
+2026-02-01T09:48:20.816135+02:00 rahmo-VMware-Virtual-Platform pkexec: pam_unix(polkit-1:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T09:48:20.820173+02:00 rahmo-VMware-Virtual-Platform pkexec[25182]: rahmo: Executing command [USER=root] [TTY=unknown] [CWD=/home/rahmo] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+2026-02-01T09:51:20.729965+02:00 rahmo-VMware-Virtual-Platform pkexec: pam_unix(polkit-1:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T09:51:20.731192+02:00 rahmo-VMware-Virtual-Platform pkexec[31341]: rahmo: Executing command [USER=root] [TTY=unknown] [CWD=/home/rahmo] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+2026-02-01T09:55:01.371718+02:00 rahmo-VMware-Virtual-Platform CRON[31364]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T09:55:01.381138+02:00 rahmo-VMware-Virtual-Platform CRON[31364]: pam_unix(cron:session): session closed for user root
+2026-02-01T10:05:01.395660+02:00 rahmo-VMware-Virtual-Platform CRON[31381]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T10:05:01.404927+02:00 rahmo-VMware-Virtual-Platform CRON[31381]: pam_unix(cron:session): session closed for user root
+2026-02-01T12:34:54.252939+02:00 rahmo-VMware-Virtual-Platform systemd-logind[1010]: New seat seat0.
+2026-02-01T12:34:54.252946+02:00 rahmo-VMware-Virtual-Platform systemd-logind[1010]: Watching system buttons on /dev/input/event0 (Power Button)
+2026-02-01T12:34:54.252950+02:00 rahmo-VMware-Virtual-Platform systemd-logind[1010]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+2026-02-01T12:34:54.252973+02:00 rahmo-VMware-Virtual-Platform polkitd[990]: Loading rules from directory /etc/polkit-1/rules.d
+2026-02-01T12:34:54.252976+02:00 rahmo-VMware-Virtual-Platform polkitd[990]: Loading rules from directory /usr/share/polkit-1/rules.d
+2026-02-01T12:34:54.252980+02:00 rahmo-VMware-Virtual-Platform polkitd[990]: Finished loading, compiling and executing 16 rules
+2026-02-01T12:34:54.252992+02:00 rahmo-VMware-Virtual-Platform polkitd[990]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2026-02-01T12:34:55.858147+02:00 rahmo-VMware-Virtual-Platform sshd[1216]: Server listening on 0.0.0.0 port 22.
+2026-02-01T12:34:55.859847+02:00 rahmo-VMware-Virtual-Platform sshd[1216]: Server listening on :: port 22.
+2026-02-01T12:34:56.177626+02:00 rahmo-VMware-Virtual-Platform gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2026-02-01T12:34:56.198013+02:00 rahmo-VMware-Virtual-Platform systemd-logind[1010]: New session c1 of user gdm.
+2026-02-01T12:34:56.258152+02:00 rahmo-VMware-Virtual-Platform (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2026-02-01T12:34:59.468184+02:00 rahmo-VMware-Virtual-Platform polkitd[990]: Registered Authentication Agent for unix-session:c1 (system bus name :1.37 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2026-02-01T12:35:01.781004+02:00 rahmo-VMware-Virtual-Platform CRON[1966]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T12:35:01.787622+02:00 rahmo-VMware-Virtual-Platform CRON[1966]: pam_unix(cron:session): session closed for user root
+2026-02-01T12:35:08.682214+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unable to locate daemon control file
+2026-02-01T12:35:08.682278+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: stashed password to try later in open session
+2026-02-01T12:35:08.696593+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:session): session opened for user rahmo(uid=1000) by rahmo(uid=0)
+2026-02-01T12:35:08.709770+02:00 rahmo-VMware-Virtual-Platform systemd-logind[1010]: New session 3 of user rahmo.
+2026-02-01T12:35:08.764697+02:00 rahmo-VMware-Virtual-Platform (systemd): pam_unix(systemd-user:session): session opened for user rahmo(uid=1000) by rahmo(uid=0)
+2026-02-01T12:35:09.102781+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-01T12:35:09.663513+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2081]: The PKCS#11 component was already initialized
+2026-02-01T12:35:09.664390+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2261]: discover_other_daemon: 1
+2026-02-01T12:35:09.670443+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2081]: The Secret Service was already initialized
+2026-02-01T12:35:09.674128+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2264]: discover_other_daemon: 1
+2026-02-01T12:35:09.679302+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2269]: discover_other_daemon: 1
+2026-02-01T12:35:11.864636+02:00 rahmo-VMware-Virtual-Platform polkitd[990]: Registered Authentication Agent for unix-session:3 (system bus name :1.78 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2026-02-01T12:35:13.484757+02:00 rahmo-VMware-Virtual-Platform gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2026-02-01T12:35:13.492729+02:00 rahmo-VMware-Virtual-Platform systemd-logind[1010]: Session c1 logged out. Waiting for processes to exit.
+2026-02-01T12:35:13.533439+02:00 rahmo-VMware-Virtual-Platform polkitd[990]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.37, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2026-02-01T12:35:13.546320+02:00 rahmo-VMware-Virtual-Platform systemd-logind[1010]: Removed session c1.
+2026-02-01T13:30:45.528497+02:00 rahmo-VMware-Virtual-Platform CRON[3014]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T13:30:45.530720+02:00 rahmo-VMware-Virtual-Platform CRON[3014]: pam_unix(cron:session): session closed for user root
+2026-02-01T13:30:57.639870+02:00 rahmo-VMware-Virtual-Platform pkexec: pam_unix(polkit-1:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:30:57.640451+02:00 rahmo-VMware-Virtual-Platform pkexec[3112]: rahmo: Executing command [USER=root] [TTY=unknown] [CWD=/home/rahmo] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+2026-02-01T13:31:05.397727+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log --format syslog
+2026-02-01T13:31:05.398352+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:31:05.449529+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:31:10.756014+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-01T13:31:10.758283+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:31:10.806155+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:31:27.706730+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/access.log
+2026-02-01T13:31:27.708554+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:31:27.748729+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:31:33.959300+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-01T13:31:33.960907+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:31:33.999703+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:34:24.115607+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/boot.log
+2026-02-01T13:34:24.119164+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:34:24.160346+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:34:32.168408+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/boot.log --format syslog
+2026-02-01T13:34:32.172278+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:34:32.211942+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:35:01.539991+02:00 rahmo-VMware-Virtual-Platform CRON[3160]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T13:35:01.547840+02:00 rahmo-VMware-Virtual-Platform CRON[3160]: pam_unix(cron:session): session closed for user root
+2026-02-01T13:35:18.411072+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/error.log --format syslog
+2026-02-01T13:35:18.414215+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:35:18.455071+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:35:24.012885+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/error.log
+2026-02-01T13:35:24.014566+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:35:24.057942+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:35:47.136895+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-01T13:35:47.138484+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:35:47.187236+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:42:37.731054+02:00 rahmo-VMware-Virtual-Platform dbus-daemon[976]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2026-02-01T13:45:01.560184+02:00 rahmo-VMware-Virtual-Platform CRON[3248]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T13:45:01.566572+02:00 rahmo-VMware-Virtual-Platform CRON[3248]: pam_unix(cron:session): session closed for user root
+2026-02-01T13:53:29.975371+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:auth): conversation failed
+2026-02-01T13:53:29.975682+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:auth): auth could not identify password for [rahmo]
+2026-02-01T13:53:32.729807+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-01T13:53:56.261728+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/boot.log --format syslog
+2026-02-01T13:53:56.262121+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T13:53:56.322228+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T13:55:01.324032+02:00 rahmo-VMware-Virtual-Platform CRON[3340]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T13:55:01.331686+02:00 rahmo-VMware-Virtual-Platform CRON[3340]: pam_unix(cron:session): session closed for user root
+2026-02-01T14:02:13.518432+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:auth): conversation failed
+2026-02-01T14:02:13.518976+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:auth): auth could not identify password for [rahmo]
+2026-02-01T14:05:01.348080+02:00 rahmo-VMware-Virtual-Platform CRON[3401]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T14:05:01.355167+02:00 rahmo-VMware-Virtual-Platform CRON[3401]: pam_unix(cron:session): session closed for user root
+2026-02-01T14:15:01.374226+02:00 rahmo-VMware-Virtual-Platform CRON[3446]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T14:15:01.383660+02:00 rahmo-VMware-Virtual-Platform CRON[3446]: pam_unix(cron:session): session closed for user root
+2026-02-01T14:17:01.395124+02:00 rahmo-VMware-Virtual-Platform CRON[3452]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T14:17:01.415876+02:00 rahmo-VMware-Virtual-Platform CRON[3452]: pam_unix(cron:session): session closed for user root
+2026-02-01T14:21:07.427849+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-01T14:21:39.066623+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: Invalid user raha from 127.0.0.1 port 52078
+2026-02-01T14:21:41.827927+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: pam_unix(sshd:auth): check pass; user unknown
+2026-02-01T14:21:41.828873+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=127.0.0.1 
+2026-02-01T14:21:44.073411+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: Failed password for invalid user raha from 127.0.0.1 port 52078 ssh2
+2026-02-01T14:21:49.374774+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: pam_unix(sshd:auth): check pass; user unknown
+2026-02-01T14:21:51.383321+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: Failed password for invalid user raha from 127.0.0.1 port 52078 ssh2
+2026-02-01T14:21:54.540247+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: pam_unix(sshd:auth): check pass; user unknown
+2026-02-01T14:21:56.900530+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: Failed password for invalid user raha from 127.0.0.1 port 52078 ssh2
+2026-02-01T14:21:57.383666+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: Connection closed by invalid user raha 127.0.0.1 port 52078 [preauth]
+2026-02-01T14:21:57.383816+02:00 rahmo-VMware-Virtual-Platform sshd[3540]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=127.0.0.1 
+2026-02-01T14:22:15.875345+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:auth): authentication failure; logname=rahmo uid=1000 euid=0 tty=/dev/pts/0 ruser=rahmo rhost=  user=rahmo
+2026-02-01T14:22:24.835660+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : 3 incorrect password attempts ; TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/ls
+2026-02-01T14:25:01.426898+02:00 rahmo-VMware-Virtual-Platform CRON[3656]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T14:25:01.431334+02:00 rahmo-VMware-Virtual-Platform CRON[3656]: pam_unix(cron:session): session closed for user root
+2026-02-01T14:25:51.483125+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-01T14:25:51.484552+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T14:25:51.538667+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T14:26:06.157716+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-01T14:26:06.159585+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T14:26:06.232586+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T14:30:01.450292+02:00 rahmo-VMware-Virtual-Platform CRON[3675]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T14:30:01.458397+02:00 rahmo-VMware-Virtual-Platform CRON[3675]: pam_unix(cron:session): session closed for user root
+2026-02-01T14:35:01.269099+02:00 rahmo-VMware-Virtual-Platform CRON[3697]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T14:35:01.275069+02:00 rahmo-VMware-Virtual-Platform CRON[3697]: pam_unix(cron:session): session closed for user root
+2026-02-01T14:40:52.932002+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:auth): conversation failed
+2026-02-01T14:40:52.932339+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:auth): auth could not identify password for [rahmo]
+2026-02-01T14:40:55.456554+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-01T14:41:17.467973+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/tail /var/log/syslog
+2026-02-01T14:41:17.470817+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T14:41:17.489266+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T14:42:22.584217+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog
+2026-02-01T14:42:22.584978+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T14:42:22.681554+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T14:43:48.138938+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/tail /var/log/apache2/access.
+2026-02-01T14:43:48.140307+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T14:43:48.143063+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T14:43:59.875835+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/tail /var/log/apache2/access.
+2026-02-01T14:43:59.877397+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T14:43:59.885117+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T14:44:13.035386+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/tail /var/log/apache2/access.log
+2026-02-01T14:44:13.037168+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T14:44:13.039649+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T14:44:20.811431+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-01T14:44:20.813621+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T14:44:20.861146+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T14:45:01.569100+02:00 rahmo-VMware-Virtual-Platform CRON[3849]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T14:45:01.576734+02:00 rahmo-VMware-Virtual-Platform CRON[3849]: pam_unix(cron:session): session closed for user root
+2026-02-01T14:51:10.814601+02:00 rahmo-VMware-Virtual-Platform systemd-logind[744]: Watching system buttons on /dev/input/event0 (Power Button)
+2026-02-01T14:51:10.814605+02:00 rahmo-VMware-Virtual-Platform systemd-logind[744]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+2026-02-01T14:51:10.814612+02:00 rahmo-VMware-Virtual-Platform systemd-logind[744]: New seat seat0.
+2026-02-01T14:51:10.814637+02:00 rahmo-VMware-Virtual-Platform polkitd[717]: Loading rules from directory /etc/polkit-1/rules.d
+2026-02-01T14:51:10.814641+02:00 rahmo-VMware-Virtual-Platform polkitd[717]: Loading rules from directory /usr/share/polkit-1/rules.d
+2026-02-01T14:51:10.826176+02:00 rahmo-VMware-Virtual-Platform polkitd[717]: Finished loading, compiling and executing 16 rules
+2026-02-01T14:51:10.827344+02:00 rahmo-VMware-Virtual-Platform polkitd[717]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2026-02-01T14:51:12.766553+02:00 rahmo-VMware-Virtual-Platform sshd[1215]: Server listening on 0.0.0.0 port 22.
+2026-02-01T14:51:12.766668+02:00 rahmo-VMware-Virtual-Platform sshd[1215]: Server listening on :: port 22.
+2026-02-01T14:51:13.048159+02:00 rahmo-VMware-Virtual-Platform gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2026-02-01T14:51:13.105448+02:00 rahmo-VMware-Virtual-Platform systemd-logind[744]: New session c1 of user gdm.
+2026-02-01T14:51:13.135650+02:00 rahmo-VMware-Virtual-Platform (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2026-02-01T14:51:16.064661+02:00 rahmo-VMware-Virtual-Platform polkitd[717]: Registered Authentication Agent for unix-session:c1 (system bus name :1.37 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2026-02-01T14:51:27.868075+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unable to locate daemon control file
+2026-02-01T14:51:27.868146+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: stashed password to try later in open session
+2026-02-01T14:51:27.883001+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:session): session opened for user rahmo(uid=1000) by rahmo(uid=0)
+2026-02-01T14:51:27.903801+02:00 rahmo-VMware-Virtual-Platform systemd-logind[744]: New session 2 of user rahmo.
+2026-02-01T14:51:27.933917+02:00 rahmo-VMware-Virtual-Platform (systemd): pam_unix(systemd-user:session): session opened for user rahmo(uid=1000) by rahmo(uid=0)
+2026-02-01T14:51:28.337582+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-01T14:51:28.969475+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[1953]: The Secret Service was already initialized
+2026-02-01T14:51:28.969924+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2130]: discover_other_daemon: 1
+2026-02-01T14:51:28.971493+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[1953]: The PKCS#11 component was already initialized
+2026-02-01T14:51:28.972397+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2131]: discover_other_daemon: 1
+2026-02-01T14:51:28.977609+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2134]: discover_other_daemon: 1
+2026-02-01T14:51:31.241970+02:00 rahmo-VMware-Virtual-Platform polkitd[717]: Registered Authentication Agent for unix-session:2 (system bus name :1.78 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2026-02-01T14:51:32.882362+02:00 rahmo-VMware-Virtual-Platform gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2026-02-01T14:51:32.892580+02:00 rahmo-VMware-Virtual-Platform systemd-logind[744]: Session c1 logged out. Waiting for processes to exit.
+2026-02-01T14:51:32.931977+02:00 rahmo-VMware-Virtual-Platform polkitd[717]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.37, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2026-02-01T14:51:32.949727+02:00 rahmo-VMware-Virtual-Platform systemd-logind[744]: Removed session c1.
+2026-02-01T14:52:32.881656+02:00 rahmo-VMware-Virtual-Platform pkexec: pam_unix(polkit-1:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T14:52:32.882853+02:00 rahmo-VMware-Virtual-Platform pkexec[3013]: rahmo: Executing command [USER=root] [TTY=unknown] [CWD=/home/rahmo] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+2026-02-01T15:32:14.005335+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log --format syslog
+2026-02-01T15:32:14.006604+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T15:32:14.073313+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T15:32:28.543458+02:00 rahmo-VMware-Virtual-Platform dbus-daemon[704]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2026-02-01T15:32:45.659437+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog/ --format syslog
+2026-02-01T15:32:45.660994+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T15:32:45.701154+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T15:32:53.745964+02:00 rahmo-VMware-Virtual-Platform CRON[3142]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T15:32:53.750058+02:00 rahmo-VMware-Virtual-Platform CRON[3142]: pam_unix(cron:session): session closed for user root
+2026-02-01T15:32:56.238752+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog --format syslog
+2026-02-01T15:32:56.239788+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T15:32:56.289816+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T15:33:05.721409+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog
+2026-02-01T15:33:05.722562+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T15:33:05.832097+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T15:34:32.604925+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-01T15:34:32.606236+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T15:34:32.648813+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T15:35:01.760805+02:00 rahmo-VMware-Virtual-Platform CRON[3157]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T15:35:01.777410+02:00 rahmo-VMware-Virtual-Platform CRON[3157]: pam_unix(cron:session): session closed for user root
+2026-02-01T15:40:27.812209+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-01T15:40:51.794432+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py example_ubuntu_auth.log
+2026-02-01T15:40:51.796002+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T15:40:51.853661+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T15:41:12.614174+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py test_access.log
+2026-02-01T15:41:12.615400+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-01T15:41:12.656166+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-01T17:30:07.149397+02:00 rahmo-VMware-Virtual-Platform CRON[3283]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T17:30:07.152264+02:00 rahmo-VMware-Virtual-Platform CRON[3283]: pam_unix(cron:session): session closed for user root
+2026-02-01T17:30:07.161483+02:00 rahmo-VMware-Virtual-Platform CRON[3286]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T17:30:07.166019+02:00 rahmo-VMware-Virtual-Platform CRON[3286]: pam_unix(cron:session): session closed for user root
+2026-02-01T17:35:01.181986+02:00 rahmo-VMware-Virtual-Platform CRON[3316]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T17:35:01.182528+02:00 rahmo-VMware-Virtual-Platform CRON[3316]: pam_unix(cron:session): session closed for user root
+2026-02-01T17:45:01.288851+02:00 rahmo-VMware-Virtual-Platform CRON[3336]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T17:45:01.291968+02:00 rahmo-VMware-Virtual-Platform CRON[3336]: pam_unix(cron:session): session closed for user root
+2026-02-01T17:55:01.301714+02:00 rahmo-VMware-Virtual-Platform CRON[3354]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T17:55:01.308741+02:00 rahmo-VMware-Virtual-Platform CRON[3354]: pam_unix(cron:session): session closed for user root
+2026-02-01T18:05:01.321809+02:00 rahmo-VMware-Virtual-Platform CRON[3419]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T18:05:01.330236+02:00 rahmo-VMware-Virtual-Platform CRON[3419]: pam_unix(cron:session): session closed for user root
+2026-02-01T18:15:01.338192+02:00 rahmo-VMware-Virtual-Platform CRON[3432]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T18:15:01.344214+02:00 rahmo-VMware-Virtual-Platform CRON[3432]: pam_unix(cron:session): session closed for user root
+2026-02-01T18:17:01.352588+02:00 rahmo-VMware-Virtual-Platform CRON[3448]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T18:17:01.374514+02:00 rahmo-VMware-Virtual-Platform CRON[3448]: pam_unix(cron:session): session closed for user root
+2026-02-01T18:25:01.382116+02:00 rahmo-VMware-Virtual-Platform CRON[3458]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T18:25:01.392153+02:00 rahmo-VMware-Virtual-Platform CRON[3458]: pam_unix(cron:session): session closed for user root
+2026-02-01T18:30:01.404504+02:00 rahmo-VMware-Virtual-Platform CRON[3463]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T18:30:01.410154+02:00 rahmo-VMware-Virtual-Platform CRON[3463]: pam_unix(cron:session): session closed for user root
+2026-02-01T18:35:01.416303+02:00 rahmo-VMware-Virtual-Platform CRON[3491]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T18:35:01.420353+02:00 rahmo-VMware-Virtual-Platform CRON[3491]: pam_unix(cron:session): session closed for user root
+2026-02-01T18:45:01.436182+02:00 rahmo-VMware-Virtual-Platform CRON[3510]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T18:45:01.449260+02:00 rahmo-VMware-Virtual-Platform CRON[3510]: pam_unix(cron:session): session closed for user root
+2026-02-01T18:55:01.463632+02:00 rahmo-VMware-Virtual-Platform CRON[3530]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T18:55:01.479465+02:00 rahmo-VMware-Virtual-Platform CRON[3530]: pam_unix(cron:session): session closed for user root
+2026-02-01T19:05:01.493620+02:00 rahmo-VMware-Virtual-Platform CRON[3540]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-01T19:05:01.502736+02:00 rahmo-VMware-Virtual-Platform CRON[3540]: pam_unix(cron:session): session closed for user root
+2026-02-02T07:55:01.634684+02:00 rahmo-VMware-Virtual-Platform CRON[3962]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T07:55:01.642176+02:00 rahmo-VMware-Virtual-Platform CRON[3962]: pam_unix(cron:session): session closed for user root
+2026-02-02T08:05:01.655648+02:00 rahmo-VMware-Virtual-Platform CRON[3996]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T08:05:01.663738+02:00 rahmo-VMware-Virtual-Platform CRON[3996]: pam_unix(cron:session): session closed for user root
+2026-02-02T08:15:01.672269+02:00 rahmo-VMware-Virtual-Platform CRON[4006]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T08:15:01.677941+02:00 rahmo-VMware-Virtual-Platform CRON[4006]: pam_unix(cron:session): session closed for user root
+2026-02-02T08:17:01.685578+02:00 rahmo-VMware-Virtual-Platform CRON[4009]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T08:17:01.692403+02:00 rahmo-VMware-Virtual-Platform CRON[4009]: pam_unix(cron:session): session closed for user root
+2026-02-02T09:22:28.676464+02:00 rahmo-VMware-Virtual-Platform CRON[4088]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T09:22:28.684462+02:00 rahmo-VMware-Virtual-Platform CRON[4088]: pam_unix(cron:session): session closed for user root
+2026-02-02T09:25:01.693459+02:00 rahmo-VMware-Virtual-Platform CRON[4092]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T09:25:01.697826+02:00 rahmo-VMware-Virtual-Platform CRON[4092]: pam_unix(cron:session): session closed for user root
+2026-02-02T09:30:01.708527+02:00 rahmo-VMware-Virtual-Platform CRON[4096]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T09:30:01.716620+02:00 rahmo-VMware-Virtual-Platform CRON[4096]: pam_unix(cron:session): session closed for user root
+2026-02-02T09:55:01.741009+02:00 rahmo-VMware-Virtual-Platform CRON[4114]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T09:55:01.752039+02:00 rahmo-VMware-Virtual-Platform CRON[4114]: pam_unix(cron:session): session closed for user root
+2026-02-02T10:05:01.765822+02:00 rahmo-VMware-Virtual-Platform CRON[4142]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T10:05:01.776591+02:00 rahmo-VMware-Virtual-Platform CRON[4142]: pam_unix(cron:session): session closed for user root
+2026-02-02T10:36:33.158462+02:00 rahmo-VMware-Virtual-Platform CRON[4162]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T10:36:33.163023+02:00 rahmo-VMware-Virtual-Platform CRON[4162]: pam_unix(cron:session): session closed for user root
+2026-02-02T10:45:01.176869+02:00 rahmo-VMware-Virtual-Platform CRON[4178]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T10:45:01.187583+02:00 rahmo-VMware-Virtual-Platform CRON[4178]: pam_unix(cron:session): session closed for user root
+2026-02-02T10:55:01.200680+02:00 rahmo-VMware-Virtual-Platform CRON[4197]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T10:55:01.204853+02:00 rahmo-VMware-Virtual-Platform CRON[4197]: pam_unix(cron:session): session closed for user root
+2026-02-02T21:47:01.894552+02:00 rahmo-VMware-Virtual-Platform systemd-logind[755]: Watching system buttons on /dev/input/event0 (Power Button)
+2026-02-02T21:47:01.894557+02:00 rahmo-VMware-Virtual-Platform systemd-logind[755]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+2026-02-02T21:47:01.894581+02:00 rahmo-VMware-Virtual-Platform systemd-logind[755]: New seat seat0.
+2026-02-02T21:47:02.220406+02:00 rahmo-VMware-Virtual-Platform polkitd[718]: Loading rules from directory /etc/polkit-1/rules.d
+2026-02-02T21:47:02.229814+02:00 rahmo-VMware-Virtual-Platform polkitd[718]: Loading rules from directory /usr/share/polkit-1/rules.d
+2026-02-02T21:47:02.300190+02:00 rahmo-VMware-Virtual-Platform polkitd[718]: Finished loading, compiling and executing 16 rules
+2026-02-02T21:47:02.300542+02:00 rahmo-VMware-Virtual-Platform polkitd[718]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2026-02-02T21:47:05.166789+02:00 rahmo-VMware-Virtual-Platform sshd[1249]: Server listening on 0.0.0.0 port 22.
+2026-02-02T21:47:05.166973+02:00 rahmo-VMware-Virtual-Platform sshd[1249]: Server listening on :: port 22.
+2026-02-02T21:47:06.055463+02:00 rahmo-VMware-Virtual-Platform gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2026-02-02T21:47:06.109617+02:00 rahmo-VMware-Virtual-Platform systemd-logind[755]: New session c1 of user gdm.
+2026-02-02T21:47:06.151786+02:00 rahmo-VMware-Virtual-Platform (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2026-02-02T21:47:11.451022+02:00 rahmo-VMware-Virtual-Platform polkitd[718]: Registered Authentication Agent for unix-session:c1 (system bus name :1.40 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2026-02-02T21:47:17.197959+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unable to locate daemon control file
+2026-02-02T21:47:17.198099+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: stashed password to try later in open session
+2026-02-02T21:47:17.233808+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:session): session opened for user rahmo(uid=1000) by rahmo(uid=0)
+2026-02-02T21:47:17.268657+02:00 rahmo-VMware-Virtual-Platform systemd-logind[755]: New session 2 of user rahmo.
+2026-02-02T21:47:17.342977+02:00 rahmo-VMware-Virtual-Platform (systemd): pam_unix(systemd-user:session): session opened for user rahmo(uid=1000) by rahmo(uid=0)
+2026-02-02T21:47:17.908222+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-02T21:47:18.646230+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[1923]: The PKCS#11 component was already initialized
+2026-02-02T21:47:18.647107+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2101]: discover_other_daemon: 1
+2026-02-02T21:47:18.656931+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[1923]: The Secret Service was already initialized
+2026-02-02T21:47:18.658000+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2103]: discover_other_daemon: 1
+2026-02-02T21:47:18.681545+02:00 rahmo-VMware-Virtual-Platform gnome-keyring-daemon[2104]: discover_other_daemon: 1
+2026-02-02T21:47:22.536044+02:00 rahmo-VMware-Virtual-Platform polkitd[718]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2026-02-02T21:47:24.613047+02:00 rahmo-VMware-Virtual-Platform gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2026-02-02T21:47:24.637634+02:00 rahmo-VMware-Virtual-Platform systemd-logind[755]: Session c1 logged out. Waiting for processes to exit.
+2026-02-02T21:47:24.700525+02:00 rahmo-VMware-Virtual-Platform polkitd[718]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.40, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2026-02-02T21:47:24.717748+02:00 rahmo-VMware-Virtual-Platform systemd-logind[755]: Removed session c1.
+2026-02-02T21:48:26.428319+02:00 rahmo-VMware-Virtual-Platform pkexec: pam_unix(polkit-1:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T21:48:26.430414+02:00 rahmo-VMware-Virtual-Platform pkexec[2912]: rahmo: Executing command [USER=root] [TTY=unknown] [CWD=/home/rahmo] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+2026-02-02T21:53:26.191173+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-02T21:53:26.193187+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T21:53:26.283420+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T21:53:39.525696+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog --format syslog
+2026-02-02T21:53:39.527133+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T21:53:39.637733+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T21:53:43.718967+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log --format syslog
+2026-02-02T21:53:43.723146+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T21:53:43.810274+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T21:53:55.831989+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log --format syslog
+2026-02-02T21:53:55.833298+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T21:53:55.904655+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T21:54:02.986908+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-02T21:54:02.989871+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T21:54:03.078334+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T21:55:01.064358+02:00 rahmo-VMware-Virtual-Platform CRON[3039]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T21:55:01.072855+02:00 rahmo-VMware-Virtual-Platform CRON[3039]: pam_unix(cron:session): session closed for user root
+2026-02-02T22:03:18.894513+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-02T22:04:26.897351+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-02T22:04:26.897937+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T22:04:26.953666+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T22:21:13.803613+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog --format syslog
+2026-02-02T22:21:13.805077+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T22:21:13.881510+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T22:21:20.977972+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog
+2026-02-02T22:21:20.979156+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T22:21:21.154734+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T22:21:37.049194+02:00 rahmo-VMware-Virtual-Platform dbus-daemon[711]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2026-02-02T22:21:39.752352+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-02T22:21:39.754920+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T22:21:39.811891+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T22:24:59.295058+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py example_systemd.log
+2026-02-02T22:24:59.296841+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T22:24:59.365979+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T22:25:01.595604+02:00 rahmo-VMware-Virtual-Platform CRON[3225]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T22:25:01.600996+02:00 rahmo-VMware-Virtual-Platform CRON[3225]: pam_unix(cron:session): session closed for user root
+2026-02-02T22:30:01.610177+02:00 rahmo-VMware-Virtual-Platform CRON[3232]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T22:30:01.619375+02:00 rahmo-VMware-Virtual-Platform CRON[3232]: pam_unix(cron:session): session closed for user root
+2026-02-02T22:33:41.905853+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-02T22:34:10.414031+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py example_ubuntu_auth.log
+2026-02-02T22:34:10.414943+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T22:34:10.466946+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T22:34:19.145317+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py example_ubuntu_auth.log --format syslog
+2026-02-02T22:34:19.146639+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T22:34:19.204155+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T22:35:01.631353+02:00 rahmo-VMware-Virtual-Platform CRON[3354]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T22:35:01.641999+02:00 rahmo-VMware-Virtual-Platform CRON[3354]: pam_unix(cron:session): session closed for user root
+2026-02-02T23:01:48.865558+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-02T23:02:12.084659+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog
+2026-02-02T23:02:12.085540+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T23:02:12.293416+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T23:02:50.979063+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py example_ubuntu_auth.log
+2026-02-02T23:02:50.980713+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T23:02:51.036077+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T23:03:02.538990+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-02T23:03:02.540052+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T23:03:02.609735+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T23:05:01.575914+02:00 rahmo-VMware-Virtual-Platform CRON[3489]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T23:05:01.583459+02:00 rahmo-VMware-Virtual-Platform CRON[3489]: pam_unix(cron:session): session closed for user root
+2026-02-02T23:08:37.056392+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-02T23:15:49.160265+02:00 rahmo-VMware-Virtual-Platform CRON[3635]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T23:15:49.169919+02:00 rahmo-VMware-Virtual-Platform CRON[3635]: pam_unix(cron:session): session closed for user root
+2026-02-02T23:15:58.915829+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log --live
+2026-02-02T23:15:58.917005+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T23:16:25.316549+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: Invalid user raha from 127.0.0.1 port 33818
+2026-02-02T23:16:27.552982+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: pam_unix(sshd:auth): check pass; user unknown
+2026-02-02T23:16:27.553206+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=127.0.0.1 
+2026-02-02T23:16:29.858378+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: Failed password for invalid user raha from 127.0.0.1 port 33818 ssh2
+2026-02-02T23:16:34.034624+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: pam_unix(sshd:auth): check pass; user unknown
+2026-02-02T23:16:36.636475+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: Failed password for invalid user raha from 127.0.0.1 port 33818 ssh2
+2026-02-02T23:16:38.657057+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: pam_unix(sshd:auth): check pass; user unknown
+2026-02-02T23:16:40.471088+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: Failed password for invalid user raha from 127.0.0.1 port 33818 ssh2
+2026-02-02T23:16:41.501108+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: Connection closed by invalid user raha 127.0.0.1 port 33818 [preauth]
+2026-02-02T23:16:41.501246+02:00 rahmo-VMware-Virtual-Platform sshd[3660]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=127.0.0.1 
+2026-02-02T23:17:01.180354+02:00 rahmo-VMware-Virtual-Platform CRON[3665]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T23:17:01.201947+02:00 rahmo-VMware-Virtual-Platform CRON[3665]: pam_unix(cron:session): session closed for user root
+2026-02-02T23:17:01.274706+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T23:17:24.311180+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-02T23:17:24.312264+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T23:17:24.371168+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T23:17:54.066515+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log --live
+2026-02-02T23:17:54.068096+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-02T23:20:17.903991+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-02T23:25:01.216053+02:00 rahmo-VMware-Virtual-Platform CRON[3718]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T23:25:01.227015+02:00 rahmo-VMware-Virtual-Platform CRON[3718]: pam_unix(cron:session): session closed for user root
+2026-02-02T23:27:11.320603+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-02T23:30:01.238116+02:00 rahmo-VMware-Virtual-Platform CRON[3806]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-02T23:30:01.244672+02:00 rahmo-VMware-Virtual-Platform CRON[3806]: pam_unix(cron:session): session closed for user root
+2026-02-03T09:30:01.272921+02:00 rahmo-VMware-Virtual-Platform CRON[4250]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T09:30:01.280178+02:00 rahmo-VMware-Virtual-Platform CRON[4250]: pam_unix(cron:session): session closed for user root
+2026-02-03T09:35:01.299528+02:00 rahmo-VMware-Virtual-Platform CRON[4273]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T09:35:01.322731+02:00 rahmo-VMware-Virtual-Platform CRON[4273]: pam_unix(cron:session): session closed for user root
+2026-02-03T09:39:46.250112+02:00 rahmo-VMware-Virtual-Platform pkexec: pam_unix(polkit-1:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T09:39:46.253421+02:00 rahmo-VMware-Virtual-Platform pkexec[4286]: rahmo: Executing command [USER=root] [TTY=unknown] [CWD=/home/rahmo] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+2026-02-03T09:45:01.815570+02:00 rahmo-VMware-Virtual-Platform CRON[4302]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T09:45:01.827204+02:00 rahmo-VMware-Virtual-Platform CRON[4302]: pam_unix(cron:session): session closed for user root
+2026-02-03T09:55:34.734444+02:00 rahmo-VMware-Virtual-Platform CRON[4315]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T09:55:34.742315+02:00 rahmo-VMware-Virtual-Platform CRON[4315]: pam_unix(cron:session): session closed for user root
+2026-02-03T10:05:01.755224+02:00 rahmo-VMware-Virtual-Platform CRON[4325]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T10:05:01.765254+02:00 rahmo-VMware-Virtual-Platform CRON[4325]: pam_unix(cron:session): session closed for user root
+2026-02-03T10:15:01.781620+02:00 rahmo-VMware-Virtual-Platform CRON[4338]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T10:15:01.789659+02:00 rahmo-VMware-Virtual-Platform CRON[4338]: pam_unix(cron:session): session closed for user root
+2026-02-03T10:15:49.108574+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-03T10:16:12.702905+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-03T10:16:12.707346+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T10:16:12.768312+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T10:16:21.446957+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-03T10:16:21.448780+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T10:16:21.509729+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T10:17:01.799577+02:00 rahmo-VMware-Virtual-Platform CRON[4449]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T10:17:01.808531+02:00 rahmo-VMware-Virtual-Platform CRON[4449]: pam_unix(cron:session): session closed for user root
+2026-02-03T10:25:01.496740+02:00 rahmo-VMware-Virtual-Platform CRON[4466]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T10:25:01.505309+02:00 rahmo-VMware-Virtual-Platform CRON[4466]: pam_unix(cron:session): session closed for user root
+2026-02-03T10:36:54.205410+02:00 rahmo-VMware-Virtual-Platform CRON[4491]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T10:36:54.211259+02:00 rahmo-VMware-Virtual-Platform CRON[4491]: pam_unix(cron:session): session closed for user root
+2026-02-03T10:45:01.229644+02:00 rahmo-VMware-Virtual-Platform CRON[4501]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T10:45:01.239972+02:00 rahmo-VMware-Virtual-Platform CRON[4501]: pam_unix(cron:session): session closed for user root
+2026-02-03T10:49:17.524116+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-03T10:49:26.283191+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-03T10:49:26.284659+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T10:49:26.339486+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T10:49:38.616970+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-03T10:49:38.618646+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T10:49:38.679512+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T10:49:53.054587+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-03T10:49:53.055995+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T10:49:53.118940+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T10:50:13.097266+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log --live
+2026-02-03T10:50:13.099581+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T10:55:01.252493+02:00 rahmo-VMware-Virtual-Platform CRON[4612]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T10:55:01.265268+02:00 rahmo-VMware-Virtual-Platform CRON[4612]: pam_unix(cron:session): session closed for user root
+2026-02-03T11:05:01.279717+02:00 rahmo-VMware-Virtual-Platform CRON[4641]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T11:05:01.285595+02:00 rahmo-VMware-Virtual-Platform CRON[4641]: pam_unix(cron:session): session closed for user root
+2026-02-03T11:06:04.822418+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-03T11:06:09.039012+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T11:06:30.629856+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log --live
+2026-02-03T11:06:30.631977+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T11:06:30.697919+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T11:06:43.196904+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log --format auto
+2026-02-03T11:06:43.198505+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T11:06:43.247335+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T11:07:12.095246+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/apache2/access.log
+2026-02-03T11:07:12.097042+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T11:07:12.148620+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T11:07:48.393766+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/auth.log
+2026-02-03T11:07:48.394614+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T11:07:48.455044+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T11:09:58.572930+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog/
+2026-02-03T11:09:58.575180+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T11:09:58.620676+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T11:10:03.020335+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/python3 main.py /var/log/syslog
+2026-02-03T11:10:03.021976+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T11:10:03.205574+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T11:56:29.024513+02:00 rahmo-VMware-Virtual-Platform CRON[5192]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-02-03T11:56:29.029665+02:00 rahmo-VMware-Virtual-Platform CRON[5192]: pam_unix(cron:session): session closed for user root
+2026-02-03T11:58:55.078695+02:00 rahmo-VMware-Virtual-Platform pkexec: pam_unix(polkit-1:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T11:58:55.080497+02:00 rahmo-VMware-Virtual-Platform pkexec[5324]: rahmo: Executing command [USER=root] [TTY=unknown] [CWD=/home/rahmo] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+2026-02-03T12:01:19.281901+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:auth): conversation failed
+2026-02-03T12:01:19.282234+02:00 rahmo-VMware-Virtual-Platform gdm-password]: pam_unix(gdm-password:auth): auth could not identify password for [rahmo]
+2026-02-03T12:02:04.042284+02:00 rahmo-VMware-Virtual-Platform gdm-password]: gkr-pam: unlocked login keyring
+2026-02-03T12:02:45.111355+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/cp /var/log/syslog ./unbuntu_syslog.log
+2026-02-03T12:02:45.113306+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)
+2026-02-03T12:02:45.129969+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+2026-02-03T12:03:29.740490+02:00 rahmo-VMware-Virtual-Platform sudo:    rahmo : TTY=pts/0 ; PWD=/home/rahmo/Project/Safety ; USER=root ; COMMAND=/usr/bin/cp /var/log/auth.log ./unbuntu_auth.log
+2026-02-03T12:03:29.742002+02:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root(uid=0) by rahmo(uid=1000)

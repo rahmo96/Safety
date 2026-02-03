@@ -87,9 +87,8 @@ class LogParser:
             'syslog', 'systemd', 'apache', 'windows_csv', or None if format cannot be determined
         """
         # Check for Windows CSV format (header row)
-        if self._is_windows_csv_header(line):
-            return 'windows_csv'
-        elif self.APACHE_COMBINED_PATTERN.match(line) or self.APACHE_COMMON_PATTERN.match(line):
+
+        if self.APACHE_COMBINED_PATTERN.match(line) or self.APACHE_COMMON_PATTERN.match(line):
             return 'apache'
         elif self.SYSTEMD_PATTERN.match(line):
             return 'systemd'
@@ -97,18 +96,11 @@ class LogParser:
             return 'syslog'
         return None
     
-    def _is_windows_csv_header(self, line: str) -> bool:
-        indicators = ['TimeCreated', 'Id', 'Date and Time', 'Event ID', 'Task Category']
-        line_upper = line.upper()
-        return any(ind.upper() in line_upper for ind in indicators) and ',' in line
-
-    def parse_windows_csv(self, file_path: str) -> List[Dict]:
         self.parsed_logs = []
         try:
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 csv_reader = csv.DictReader(f)
                 for line_num, row in enumerate(csv_reader, 1):
-                    # כאן הקסם: "מיפוי גמיש" שמתאים לקובץ שלך
                     parsed_entry = {
                         'format': 'windows_csv',
                         'timestamp': row.get('Date and Time') or row.get('TimeCreated', 'N/A'),
