@@ -17,12 +17,26 @@ A Python-based security log analysis tool that parses system logs, detects secur
 
 ## Requirements
 
-- Python 3.6 or higher
-- No external dependencies (uses only Python standard library)
+- **Python 3.6 or higher** (Python 3.7+ recommended for better type hint support)
+- **No external dependencies** - uses only Python standard library:
+  - `re` - Regular expression parsing
+  - `json` - JSON report generation
+  - `csv` - CSV report generation
+  - `argparse` - Command-line interface
+  - `datetime` - Timestamp handling
+  - `collections` - Data structures for statistics
+  - `abc` - Abstract base classes for plugin architecture
+  - `importlib` - Dynamic module loading
+  - `inspect` - Rule discovery
 
 ## Installation
 
-1. Clone or download this repository
+1. Clone or download this repository:
+   ```bash
+   git clone <repository-url>
+   cd Safety
+   ```
+
 2. Ensure Python 3.6+ is installed:
    ```bash
    python --version
@@ -30,14 +44,26 @@ A Python-based security log analysis tool that parses system logs, detects secur
    python3 --version
    ```
 
+3. No additional dependencies required! The tool uses only Python standard library modules.
+
+4. (Optional) Generate test logs for testing:
+   ```bash
+   python scripts/access_genrator.py
+   python scripts/auth_generator.py
+   python scripts/syslog_generator.py
+   ```
+
 ## Quick Start
 
 ```bash
-# Analyze a log file
-python main.py access.log
+# Analyze a log file (auto-detects format)
+python main.py logs/access.log
 
 # Generate JSON report
-python main.py access.log --output report.json --output-format json
+python main.py logs/access.log --output report.json --output-format json
+
+# Analyze authentication logs
+python main.py logs/auth.log --format syslog
 ```
 
 ## Usage
@@ -55,44 +81,69 @@ positional arguments:
   log_file              Path to the log file to analyze
 
 optional arguments:
-  --format {auto,syslog,systemd,apache}
+  --format {auto,syslog,systemd,apache,windows_csv}
                         Log format type (default: auto-detect)
-  --output OUTPUT       Output file path for report (JSON or CSV)
+                        Supports: syslog, systemd (journal), apache, windows_csv
+  --output OUTPUT       Output file path for report (JSON, CSV, or text)
+                        If not specified, prints to console
   --output-format {json,csv,text}
                         Output format: json, csv, or text (default: text)
-  --failed-threshold N  Threshold for failed login attempts (default: 5)
+                        Auto-detected from file extension if --output is specified
+  --failed-threshold N  Threshold for failed login attempts to trigger alert (default: 5)
   --traffic-threshold N Threshold for unusual traffic volume per IP (default: 100)
   --suspicious-paths PATH [PATH ...]
-                        Additional suspicious paths to monitor
+                        Additional suspicious paths to monitor (space-separated)
 ```
 
 ## Examples
 
-### Batch Analysis Examples
+### Basic Analysis Examples
 
 1. **Analyze a log file and print results:**
    ```bash
-   python main.py access.log
+   python main.py logs/access.log
    ```
 
 2. **Analyze and save JSON report:**
    ```bash
-   python main.py access.log --output report.json --output-format json
+   python main.py logs/access.log --output report.json --output-format json
    ```
 
 3. **Analyze Syslog format:**
    ```bash
-   python main.py syslog.txt --format syslog
+   python main.py logs/syslog.log --format syslog
    ```
 
-4. **Custom thresholds:**
+4. **Analyze Systemd journal format:**
    ```bash
-   python main.py access.log --failed-threshold 10 --traffic-threshold 200
+   python main.py logs/syslog.log --format systemd
    ```
 
-5. **Monitor custom paths:**
+5. **Analyze Windows Event Viewer CSV:**
    ```bash
-   python main.py access.log --suspicious-paths /api/admin /private /secret
+   python main.py windows_events.csv --format windows_csv
+   ```
+
+### Advanced Usage Examples
+
+6. **Custom thresholds:**
+   ```bash
+   python main.py logs/access.log --failed-threshold 10 --traffic-threshold 200
+   ```
+
+7. **Monitor custom paths:**
+   ```bash
+   python main.py logs/access.log --suspicious-paths /api/admin /private /secret
+   ```
+
+8. **Generate CSV report:**
+   ```bash
+   python main.py logs/auth.log --format syslog --output report.csv --output-format csv
+   ```
+
+9. **Auto-detect log format:**
+   ```bash
+   python main.py logs/mixed.log --format auto
    ```
 
 ## Project Structure
@@ -109,7 +160,17 @@ optional arguments:
 │   ├── brute_force_rule.py      # Brute force detection
 │   ├── path_traversal_rule.py   # Unauthorized access detection
 │   ├── unusual_traffic_rule.py  # Traffic pattern detection
+│   ├── privileged_access_rule.py # Privileged access monitoring
 │   └── example_custom_rule.py   # Template for new rules
+├── scripts/             # Log generation utilities for testing
+│   ├── access_genrator.py       # Apache access log generator
+│   ├── auth_generator.py        # Authentication log generator
+│   └── syslog_generator.py      # Syslog generator
+├── logs/                # Sample log files and test data
+│   ├── access.log       # Apache access logs
+│   ├── auth.log         # Authentication logs
+│   ├── syslog.log       # System logs
+│   └── README.md         # Test log documentation
 ├── requirements.txt     # Dependencies (none required)
 └── README.md           # This file
 ```
@@ -220,7 +281,9 @@ class MyRule(SecurityRule):
 
 ## Security Event Detection
 
-### Failed Login Attempts (Brute Force)
+The tool includes several built-in detection rules that are automatically loaded:
+
+### 1. Failed Login Attempts (Brute Force)
 
 Detects multiple failed login attempts from the same IP address.
 
@@ -230,7 +293,9 @@ Detects multiple failed login attempts from the same IP address.
 - HTTP status codes: 401 (Unauthorized), 403 (Forbidden)
 - Log messages containing: "failed password", "authentication failure", "invalid user", "login failed", "access denied", "unauthorized"
 
-### Unauthorized Access Attempts
+**Rule:** `brute_force_rule.py`
+
+### 2. Unauthorized Access Attempts (Path Traversal)
 
 Monitors access attempts to sensitive paths.
 
@@ -243,7 +308,9 @@ Monitors access attempts to sensitive paths.
 - **Critical**: Successful access (200, 301, 302) to sensitive paths
 - **High**: Failed attempts (401, 403, 404) to sensitive paths
 
-### Unusual Traffic Patterns
+**Rule:** `path_traversal_rule.py`
+
+### 3. Unusual Traffic Patterns
 
 Identifies IP addresses with unusually high request volumes.
 
@@ -252,6 +319,20 @@ Identifies IP addresses with unusually high request volumes.
 **Patterns detected:**
 - High POST request ratio (>70% of requests)
 - Potential web scraping (>90% GET requests)
+
+**Rule:** `unusual_traffic_rule.py`
+
+### 4. Privileged Access Monitoring
+
+Detects privileged access events such as root sessions and sudo usage.
+
+**Detection criteria:**
+- Session opened for user root
+- Sudo command execution
+
+**Severity:** Medium
+
+**Rule:** `privileged_access_rule.py`
 
 ## Report Formats
 
@@ -336,6 +417,25 @@ python main.py journal.log --format systemd
 - **Open/Closed Principle**: Open for extension, closed for modification
 
 
+## Testing
+
+The project includes log generation scripts for testing purposes:
+
+### Generating Test Logs
+
+```bash
+# Generate Apache access logs
+python scripts/access_genrator.py
+
+# Generate authentication logs
+python scripts/auth_generator.py
+
+# Generate syslog entries
+python scripts/syslog_generator.py
+```
+
+These scripts create sample log files with various security events for testing the detection rules.
+
 ## Contributing
 
 This is an academic project. Contributions and improvements are welcome!
@@ -347,6 +447,10 @@ This is an academic project. Contributions and improvements are welcome!
 3. Test with various log formats
 4. Update documentation for new features
 5. Create new rules in `rules/` directory following the plugin pattern
+
+### Creating Custom Rules
+
+See `rules/example_custom_rule.py` for a complete template showing how to create new detection rules. The plugin system automatically discovers and loads any class that inherits from `SecurityRule`.
 
 ## License
 
