@@ -1,0 +1,7 @@
+Jan 29 18:20:10 rahmo-VMware-Virtual-Platform kernel: [12345.678] Firewall: Blocked connection from 10.0.0.100
+Jan 29 18:20:11 rahmo-VMware-Virtual-Platform kernel: [12345.679] Firewall: Blocked connection from 10.0.0.100
+Jan 29 18:20:12 rahmo-VMware-Virtual-Platform kernel: [12345.680] Firewall: Blocked connection from 10.0.0.100
+Jan 29 18:20:13 rahmo-VMware-Virtual-Platform kernel: [12345.681] Firewall: Blocked connection from 10.0.0.100
+Jan 29 18:20:14 rahmo-VMware-Virtual-Platform kernel: [12345.682] Firewall: Blocked connection from 10.0.0.100
+Jan 29 18:25:00 rahmo-VMware-Virtual-Platform kernel: [12350.000] Memory allocation failed for process 1234
+Jan 29 18:30:00 rahmo-VMware-Virtual-Platform kernel: [12355.000] Network interface eth0: link up

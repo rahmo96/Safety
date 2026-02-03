@@ -1,0 +1,10 @@
+Jan 29 18:23:10 rahmo-VMware-Virtual-Platform sshd[12345]: Failed password for invalid user admin from 192.168.1.200 port 22 ssh2
+Jan 29 18:23:11 rahmo-VMware-Virtual-Platform sshd[12345]: Failed password for invalid user admin from 192.168.1.200 port 22 ssh2
+Jan 29 18:23:12 rahmo-VMware-Virtual-Platform sshd[12345]: Failed password for invalid user admin from 192.168.1.200 port 22 ssh2
+Jan 29 18:23:13 rahmo-VMware-Virtual-Platform sshd[12345]: Failed password for invalid user admin from 192.168.1.200 port 22 ssh2
+Jan 29 18:23:14 rahmo-VMware-Virtual-Platform sshd[12345]: Failed password for invalid user admin from 192.168.1.200 port 22 ssh2
+Jan 29 18:23:15 rahmo-VMware-Virtual-Platform sshd[12345]: Failed password for invalid user admin from 192.168.1.200 port 22 ssh2
+Jan 29 18:25:00 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session opened for user root by (uid=1000)
+Jan 29 18:25:05 rahmo-VMware-Virtual-Platform sudo: pam_unix(sudo:session): session closed for user root
+Jan 29 18:30:00 rahmo-VMware-Virtual-Platform sshd[12346]: Accepted publickey for user from 192.168.1.50 port 22 ssh2
+Jan 29 18:35:00 rahmo-VMware-Virtual-Platform sshd[12347]: authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.1.201 user=admin

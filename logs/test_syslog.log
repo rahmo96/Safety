@@ -1,0 +1,12 @@
+Dec 25 10:15:30 server1 sshd[1234]: Failed password for user admin from 192.168.1.100
+Dec 25 10:15:31 server1 sshd[1234]: Failed password for user admin from 192.168.1.100
+Dec 25 10:15:32 server1 sshd[1234]: Failed password for user admin from 192.168.1.100
+Dec 25 10:15:33 server1 sshd[1234]: Failed password for user admin from 192.168.1.100
+Dec 25 10:15:34 server1 sshd[1234]: Failed password for user admin from 192.168.1.100
+Dec 25 10:15:35 server1 sshd[1234]: Failed password for user admin from 192.168.1.100
+Dec 25 10:20:15 server1 sudo: pam_unix(sudo:auth): authentication failure; logname=user uid=1000 euid=0 tty=/dev/pts/0 ruser=user rhost= user=user
+Dec 25 10:20:16 server1 sudo: pam_unix(sudo:auth): authentication failure; logname=user uid=1000 euid=0 tty=/dev/pts/0 ruser=user rhost= user=user
+Dec 25 10:20:17 server1 sudo: pam_unix(sudo:auth): authentication failure; logname=user uid=1000 euid=0 tty=/dev/pts/0 ruser=user rhost= user=user
+Dec 25 10:25:00 server1 sshd[5678]: Accepted publickey for user from 192.168.1.50 port 22 ssh2
+Dec 25 10:30:00 server1 systemd[1]: Started network service
+Dec 25 10:35:00 server1 kernel: [12345.678] Firewall: Blocked connection from 10.0.0.100
