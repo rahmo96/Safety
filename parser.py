@@ -34,7 +34,7 @@ class LogParser:
     SYSTEMD_PATTERN = re.compile(
         r'(?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:[+-]\d{2}:\d{2}|Z)?)\s+'
         r'(?P<hostname>[\w\.-]+)\s+'
-        r'(?P<service>[\w\-/]+)(?:\[(?P<pid>\d+)\])?:\s+'
+        r'(?P<service>[\w\.\-/]+)(?:\[(?P<pid>\d+)\])?:\s+'
         r'(?P<message>.*)'
     )
     
