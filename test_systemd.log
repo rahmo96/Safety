@@ -1,0 +1,11 @@
+2026-02-01T09:31:40.471045+02:00 rahmo-VMware-Virtual-Platform rsyslogd: [origin software="rsyslogd" swVersion="8.2312.0" x-pid="759" x-info="https://www.rsyslog.com"] rsyslogd was HUPed
+2026-02-01T09:31:40.479617+02:00 rahmo-VMware-Virtual-Platform systemd[1]: logrotate.service: Deactivated successfully.
+2026-02-01T09:31:40.481420+02:00 rahmo-VMware-Virtual-Platform systemd[1]: Finished logrotate.service - Rotate log files.
+2026-02-01T09:32:34.316971+02:00 rahmo-VMware-Virtual-Platform apt.systemd.daily[10533]: /usr/bin/unattended-upgrade:567: DeprecationWarning: This process (pid=10533) is multi-threaded, use of fork() may lead to deadlocks in the child.
+2026-02-01T09:32:34.317231+02:00 rahmo-VMware-Virtual-Platform apt.systemd.daily[10533]:   pid = os.fork()
+2026-02-01T09:32:36.145540+02:00 rahmo-VMware-Virtual-Platform dbus-daemon[702]: [system] Activating via systemd: service name='org.freedesktop.PackageKit' unit='packagekit.service' requested by ':1.152' (uid=0 pid=10684 comm="/usr/bin/gdbus call --system --dest org.freedeskto" label="unconfined")
+2026-02-01T09:32:36.156156+02:00 rahmo-VMware-Virtual-Platform systemd[1]: Starting packagekit.service - PackageKit Daemon...
+2026-02-01T09:32:36.165438+02:00 rahmo-VMware-Virtual-Platform PackageKit: daemon start
+2026-02-01T09:32:36.187591+02:00 rahmo-VMware-Virtual-Platform dbus-daemon[702]: [system] Successfully activated service 'org.freedesktop.PackageKit'
+2026-02-01T09:32:36.190938+02:00 rahmo-VMware-Virtual-Platform systemd[1]: Started packagekit.service - PackageKit Daemon.
+2026-02-01T09:32:37.691861+02:00 rahmo-VMware-Virtual-Platform apt.systemd.daily[10533]: /usr/bin/unattended-upgrade:567: DeprecationWarning: This process (pid=10533) is multi-threaded, use of fork() may lead to deadlocks in the child.
