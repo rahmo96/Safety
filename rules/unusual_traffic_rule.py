@@ -3,7 +3,7 @@
 import re
 from typing import Dict, Optional, List
 from collections import defaultdict
-from base_rule import SecurityRule
+from .base_rule import SecurityRule
 
 
 class UnusualTrafficRule(SecurityRule):

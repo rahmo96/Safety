@@ -1,4 +1,4 @@
-from base_rule import SecurityRule
+from .base_rule import SecurityRule
 import re
 
 class PrivilegedAccessRule(SecurityRule):

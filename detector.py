@@ -5,7 +5,7 @@ import importlib
 import inspect
 from typing import List, Dict
 from collections import defaultdict
-from base_rule import SecurityRule
+from rules.base_rule import SecurityRule
 
 
 class SecurityDetector:

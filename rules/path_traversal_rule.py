@@ -1,6 +1,6 @@
 import re
 from typing import Dict, Optional, List
-from base_rule import SecurityRule
+from .base_rule import SecurityRule
 
 class PathTraversalRule(SecurityRule):
     def __init__(self, suspicious_paths: List[str] = None):
