@@ -349,34 +349,6 @@ journalctl --no-pager > journal.log
 python main.py journal.log --format systemd
 ```
 
-## Troubleshooting
-
-### "No log entries were parsed"
-- Check that the log file format matches the expected format
-- Try specifying `--format syslog` or `--format apache` explicitly
-- Verify the log file is not empty
-
-### "Permission denied"
-- Ensure you have read permissions for the log file
-- On Unix/Linux systems, use `sudo` or copy the file first
-- Check file permissions with `ls -l`
-
-### "Log file not found"
-- Verify the file path is correct
-- Use absolute paths if relative paths don't work
-
-### Rules not loading
-- Ensure rule files are in the `rules/` directory
-- Check that rule classes inherit from `SecurityRule`
-- Verify Python can import the modules
-
-## Security Considerations
-
-- The tool uses read-only file access for log files
-- No write operations are performed on log files
-- All file operations use secure error handling
-- Input validation prevents path traversal attacks
-
 ## Architecture
 
 ### Plugin System
@@ -405,26 +377,6 @@ python scripts/syslog_generator.py
 
 These scripts create sample log files with various security events for testing the detection rules.
 
-## Contributing
 
-This is an academic project. Contributions and improvements are welcome!
 
-### Development Guidelines
 
-1. Follow PEP 8 style guidelines
-2. Add docstrings to all functions and classes
-3. Test with various log formats
-4. Update documentation for new features
-5. Create new rules in `rules/` directory following the plugin pattern
-
-### Creating Custom Rules
-
-See `rules/example_custom_rule.py` for a complete template showing how to create new detection rules. The plugin system automatically discovers and loads any class that inherits from `SecurityRule`.
-
-## License
-
-This tool is provided as-is for educational and security analysis purposes.
-
-## Author
-
-Cybersecurity Software Engineer - Academic Project
