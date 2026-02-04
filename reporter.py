@@ -1,8 +1,3 @@
-"""
-Report Generator Module
-Creates structured reports of detected security events.
-"""
-
 import json
 import csv
 from typing import Dict, List

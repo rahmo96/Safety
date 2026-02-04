@@ -1,8 +1,4 @@
-"""
-Security Event Detector Module
-Implements plugin-based security detection using dynamically loaded rules.
-Follows the Open/Closed Principle: open for extension, closed for modification.
-"""
+
 
 import os
 import importlib
@@ -13,14 +9,7 @@ from base_rule import SecurityRule
 
 
 class SecurityDetector:
-    """
-    Detects security events in parsed logs using dynamically loaded rules.
-    
-    This class automatically discovers and loads all SecurityRule implementations
-    from the rules/ directory, demonstrating the Open/Closed Principle.
-    New security rules can be added by simply creating a new file in rules/
-    without modifying this class.
-    """
+
     
     def __init__(self, 
                  failed_login_threshold: int = 5,

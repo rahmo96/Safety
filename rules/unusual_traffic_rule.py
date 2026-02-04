@@ -1,7 +1,4 @@
-"""
-Unusual Traffic Detection Rule
-Detects unusual traffic volume or patterns from single IP addresses.
-"""
+
 
 import re
 from typing import Dict, Optional, List

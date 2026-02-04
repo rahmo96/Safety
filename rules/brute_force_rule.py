@@ -1,7 +1,3 @@
-"""
-Brute Force Detection Rule
-Detects multiple failed login attempts from the same IP address.
-"""
 
 import re
 from typing import Dict, Optional, List
