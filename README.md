@@ -247,28 +247,6 @@ The tool uses a **plugin-based architecture** following the **Open/Closed Princi
 - **No Core Modifications**: New rules are automatically discovered and loaded
 - **SOLID Principles**: Follows best practices for maintainable code
 
-### Adding a New Rule
-
-1. Create `rules/my_rule.py`:
-```python
-from base_rule import SecurityRule
-
-class MyRule(SecurityRule):
-    def __init__(self):
-        super().__init__(rule_name='my_rule', severity='high')
-    
-    def evaluate(self, log_entry):
-        # Your detection logic
-        if threat_detected:
-            return {
-                'type': 'my_threat',
-                'severity': self.severity,
-                'description': 'Threat description'
-            }
-        return None
-```
-
-2. That's it! The rule is automatically loaded and executed.
 
 ## Security Event Detection
 
