@@ -114,15 +114,6 @@ optional arguments:
    python main.py logs/syslog.log --format syslog
    ```
 
-4. **Analyze Systemd journal format:**
-   ```bash
-   python main.py logs/syslog.log --format systemd
-   ```
-
-5. **Analyze Windows Event Viewer CSV:**
-   ```bash
-   python main.py windows_events.csv --format windows_csv
-   ```
 
 ### Advanced Usage Examples
 
