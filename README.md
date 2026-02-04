@@ -89,10 +89,7 @@ optional arguments:
   --output-format {json,csv,text}
                         Output format: json, csv, or text (default: text)
                         Auto-detected from file extension if --output is specified
-  --failed-threshold N  Threshold for failed login attempts to trigger alert (default: 5)
-  --traffic-threshold N Threshold for unusual traffic volume per IP (default: 100)
-  --suspicious-paths PATH [PATH ...]
-                        Additional suspicious paths to monitor (space-separated)
+
 ```
 
 ## Examples
